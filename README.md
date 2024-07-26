@@ -7,8 +7,8 @@
 
 Content is common across *two* modules:
 
-- [https://courses.dkit.ie/index.cfm/page/module/moduleId/69178](COMP I8063: Higher Diploma in Science in Networking and Systems)
-- [https://courses.dkit.ie/index.cfm/page/module/moduleId/57313](COMP I8039: Level 8 Computing Systems and Operations Stage 3)
+- [COMP I8063: Higher Diploma in Science in Networking and Systems](https://courses.dkit.ie/index.cfm/page/module/moduleId/69178)
+- [COMP I8039: Level 8 Computing Systems and Operations Stage 3](https://courses.dkit.ie/index.cfm/page/module/moduleId/57313)
 
 Delivery modes, contact hours and assessment format(s) may differ across both modules.
 The learning outcomes and content are almost identical.
