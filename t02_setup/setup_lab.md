@@ -1,6 +1,6 @@
 # Lab setup for automation module
 
-**DRAFT** do not start working on this lab yet!
+**DRAFT** do not start working on this lab yet! Instructions not complete.
 
 Today's lab will set up a number of things we need for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
@@ -118,6 +118,16 @@ We could have done it by you cloning a copy of the labs from my account, creatin
 5. Copy the `Clone with HTTPS` URL from the box.
 6. Paste after the `git clone ` command and run it.
 7. You should now see the `automation_labs` folder as well as `automation` folder.
+
+
+## Task 7: Set up your lab folder
+
+1. Navigate into the `automation_labs` folder.
+2. Run the `./setup_lab_folder.py` program.
+3. Answer any required questions.
+
+**Note:** you only need to do this once for your labs repository!
+It does *not* need to be done on each computer. 
 
 
 ## Reflection
