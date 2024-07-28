@@ -2,4 +2,14 @@
 # Client check launcher script for Automation Module
 # Peadar Grant
 
+# check if Python is installed on the system
+try {
+    $pythons = ( get-command -all python )
+}
+catch {
+    Write-Host "install Python on this computer to continue and try again"
+    exit
+}
+
+# if so, then run the common client check script
 python3 ./client_check.py --wrapper windows
