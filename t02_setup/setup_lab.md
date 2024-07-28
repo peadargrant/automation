@@ -22,11 +22,11 @@ We will be using the `git ` source code control system a lot in this module.
 First, I will use it to distribute all the files you need to you on an ongoing basis.
 You will start today using it to maintain your on-going lab work for assessment.
 
-1. Open up PowerShell in Windows Terminal and navigate to the Desktop folder using `cd`.
-   (Folder path should look like  `C:\Users\D92929292\Desktop`)
+1. Open up PowerShell in Windows Terminal and navigate to your home folder using `cd`.
+   (Folder path should look like  `C:\Users\D92929292`)
 2. Run the command `git clone https://github.com/peadargrant/automation.git`.
-3. Use `ls` to confirm that the `automation` folder now exists in your `Desktop` folder.
-4. Confirm visually on the desktop that the `automation` folder appears.
+3. Use `ls` to confirm that the `automation` folder now exists in your home folder.
+4. Confirm visually using Explorer that the `automation` folder appears.
 5. Close PowerShell.
 
 
@@ -57,20 +57,24 @@ To confirm that the lab PC you are using has the requirements:
 2. Run the `system_check_windows.ps1` command.
 3. Confirm that it says `system ok for automation module`.
 
+**Note:** there are also two Bash scripts to check Mac and Linux client systems for compatibility.
+
 
 ## Task 3: XOA request
 
-We will make use of the XOA virtualisation system in DkIT later on in the module.
+We will make use of the XOA virtualisation system in DkIT later in this module.
 
-**Note:** the following two steps might seem out-of-sequence, but they must be done in that order.
+**Note:** the following two steps might seem out-of-sequence, but they must be done in the order shown below.
 If you don't first login to XOA you won't have a User profile for the technical staff to assign permissions to.
+
 
 ### Step 1: Login to XOA
 
 First you need to login to XOA itself with your DkIT credentials to create a User profile on it at the following URL:
 `https://xoa.comp.dkit.ie`.
 
-You will be able to login but not create any VMs or other resources.
+You will be able to login to XOA but not create any VMs or other resources.
+It has however created your user profile.
 
 
 ### Step 2: Request permissions
@@ -95,7 +99,8 @@ I will monitor your progress manually and automatically throughout the semester 
 To facilitate this you will add me to your lab work repository. 
 
 **Forking:** is a way to create your own copy of a project on a system like GitLab or GitHub.
-We could have done it by you cloning a copy of the labs from my account, creating a new repo on your own account and pushing to that instead. But forking is quicker to do when appropriate.
+We could have done it by you cloning a copy of the labs from my account, creating a new repo on your own account and pushing to that instead.
+But forking is quicker to do when appropriate.
 
 1. Login to the **school** GitLab instance at `https://gitlab.comp.dkit.ie` with your DkIT credentials.
 2. Go to the project `https://gitlab.comp.dkit.ie/grantp/automation_labs`.
@@ -127,7 +132,7 @@ We could have done it by you cloning a copy of the labs from my account, creatin
 3. Answer any required questions.
 
 **Note:** you only need to do this once for your labs repository!
-It does *not* need to be done on each computer. 
+It does *not* need to be done on each computer that you use. 
 
 
 ## Reflection
