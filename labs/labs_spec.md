@@ -9,6 +9,9 @@
 - Some content and lab exercises are omitted from the one of the groups.
 - Repository and submission requirements are identical.
 
+**Description**:
+Assess Lab work outcomes from building and evaluating different automation solutions
+
 ## Introduction
 
 You will maintain a git repository to chart your weekly lab work in this module.
