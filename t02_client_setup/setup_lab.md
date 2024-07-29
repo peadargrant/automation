@@ -1,8 +1,8 @@
-# Lab setup for automation module
+# Lab client setup for automation module
 
-**DRAFT** do not start working on this lab yet! Instructions not complete.
+**NOT COMPLETE** do not start working on this lab yet!
 
-Today's lab will set up a number of things we need for the automation module.
+Today's lab will set up a number of things we need on the client side for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
 There are a lot of different things to do but most are not particularly challenging, so make sure that you keep to time.
 
@@ -54,10 +54,12 @@ You are probably going to find it easiest to always use the same lab PC for the 
 To confirm that the lab PC you are using has the requirements:
 
 1. Open up a new Powershell window and navigate to the `automation` folder on your Desktop.
-2. Run the `system_check_windows.ps1` command.
+2. Run the `client_check_windows.ps1` command.
 3. Confirm that it says `system ok for automation module`.
 
-**Note:** there are also two Bash scripts to check Mac and Linux client systems for compatibility.
+**Note:**
+there are also two Bash scripts to check Mac and Linux client systems for compatibility.
+These are experimental as all the lab machines run Windows 11.
 
 
 ## Task 3: XOA request
