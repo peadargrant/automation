@@ -5,6 +5,7 @@
 # check if Python is installed on the system
 try {
     $pythons = ( get-command -all python )
+    Write-Host "python is installed on this computer"
 }
 catch {
     Write-Host "install Python on this computer to continue and try again"

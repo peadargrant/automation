@@ -23,7 +23,7 @@ description = 'client system check script for automation module'
     
 parser = ArgumentParser(description=description,
                         epilog='For completeness you should generally call this script using the OS-specific wrapper like system_check_windows.ps1 or system_check_linux.sh')
-parser.add_argument('--input', help='input filename', default='requirements.json')
+parser.add_argument('--input', help='input filename', default='client_requirements.json')
 parser.add_argument('--wrapper', help='wrapper script system type', default=None)
 args = parser.parse_args()
 
@@ -42,7 +42,7 @@ print('detected client system type is %s' % system)
 if args.wrapper is not None:
     print('wrapper script type is %s' % args.wrapper)
     if args.wrapper != system:
-        print('re-try with correct wrapper script for system type %s' % system)
+        print(f'{bcolors.WARNING}re-try with correct wrapper script for system type %s{bcolors.ENDC}' % system)
         sys.exit(1)
 
 f = open(args.input, 'r')
