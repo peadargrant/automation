@@ -23,7 +23,7 @@ description = 'system check script for automation module'
     
 parser = ArgumentParser(description=description,
                         epilog='For completeness you should generally call this script using the OS-specific wrapper like system_check_windows.ps1 or system_check_linux.sh')
-parser.add_argument('--input', help='input filename', default='client_requirements.json')
+parser.add_argument('--input', help='input filename', default='requirements.json')
 parser.add_argument('--wrapper', help='wrapper script system type', default=None)
 parser.add_argument('--role', help='machine role', default='client')
 args = parser.parse_args()
