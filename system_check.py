@@ -19,12 +19,13 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-description = 'client system check script for automation module'
+description = 'system check script for automation module'
     
 parser = ArgumentParser(description=description,
                         epilog='For completeness you should generally call this script using the OS-specific wrapper like system_check_windows.ps1 or system_check_linux.sh')
 parser.add_argument('--input', help='input filename', default='client_requirements.json')
 parser.add_argument('--wrapper', help='wrapper script system type', default=None)
+parser.add_argument('--role', help='machine role', default='client')
 args = parser.parse_args()
 
 print(description)
@@ -37,7 +38,7 @@ elif 'Darwin' == system:
     system = 'mac'
 elif 'Windows' == system:
     system = 'windows'
-print('detected client system type is %s' % system)
+print('detected %s system type is %s' % (args.role, system))
 
 if args.wrapper is not None:
     print('wrapper script type is %s' % args.wrapper)
@@ -83,4 +84,4 @@ print("%3d warnings" % warnings)
 if errors > 0:
     print('fix the errors identified and re-run this script to confirm')
 else:
-    print(f'{bcolors.OKGREEN}your client system meets the requirements for this module.{bcolors.ENDC}')
+    print(f'{bcolors.OKGREEN}your %s system meets the requirements for this module.{bcolors.ENDC}' % args.role)

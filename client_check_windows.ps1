@@ -13,4 +13,4 @@ catch {
 }
 
 # if so, then run the common client check script
-python3 ./client_check.py --wrapper windows
+python3 ./system_check.py --wrapper windows
