@@ -2,8 +2,7 @@
     "commands": {
 	"ssh": {
 	},
-	"git": {
-	    "links": {
+	"git": {	    "links": {
 		"windows": "https://github.com/git-for-windows/git/releases/download/v2.45.2.windows.1/Git-2.45.2-64-bit.exe"
 	    },
 	    "guidance": {
@@ -11,11 +10,13 @@
 	    }
 	},
 	"pandoc": {
+	    "enabled": false,
 	    "links": {
 		"windows": "https://github.com/jgm/pandoc/releases/download/3.2.1/pandoc-3.2.1-windows-x86_64.msi"
 	    }
 	},
 	"aws": {
+	    "enabled": false,
 	    "compulsory": false,
 	    "links": {
 		"windows": "https://awscli.amazonaws.com/AWSCLIV2.msi",
@@ -23,6 +24,7 @@
 	    }
 	},
 	"az": {
+	    "enabled": false,
 	    "compulsory": false,
 	    "links": {
 		"windows": "https://aka.ms/installazurecliwindowsx64"

@@ -56,6 +56,10 @@ errors = 0
 
 for command in commands.keys():
     r = commands[command]
+
+    if not r.get('enabled', True):
+        continue
+    
     print(f'checking for {bcolors.BOLD}%s{bcolors.ENDC} ... ' % command, end='')
     
     if which(command) is None:
