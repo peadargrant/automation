@@ -63,7 +63,7 @@ for command in commands.keys():
     print(f'checking for {bcolors.BOLD}%s{bcolors.ENDC} ... ' % command, end='')
     
     if which(command) is None:
-        if "compulsory" in r and False == r['compulsory']:
+        if not r.get('compulsory', True):
             print(f'{bcolors.WARNING}not found [advisory]{bcolors.ENDC}')
             warnings = warnings + 1 
         else:
