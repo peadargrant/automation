@@ -19,5 +19,5 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
-print(f'{bcolors.FAIL}automated attendance tracking not working yet{bcolors.ENDC}')
+print(f'{bcolors.FAIL}automated attendance tracking not implemented{bcolors.ENDC}')
 
