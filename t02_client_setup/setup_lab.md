@@ -8,12 +8,14 @@ There are a lot of different things to do but most are not particularly challeng
 
 **DkIT login:**
 We will be using a number of services that require your DkIT login.
-If you don't have this working please use the self service password reset utility or seek advice from the technical staff.
-You will need it for all of the instructions below.
+If you don't have this working please use the self service password reset utility or seek advice from the technical staff immediately.
+You will need it for many of the instructions below.
 
 **Lab computers:**
 You must use the lab computers for these instructions.
-You're welcome to repeat the steps on your own laptop but I have designed the instructions to work within the wired specialist lab network environment at DkIT.
+You're welcome to attempt / repeat the steps on your own laptop or home computer but I have designed the instructions to work within the wired specialist lab network environment at DkIT.
+
+*This section needs clarification depending on what remote access facilities are installed over summer 2024.*
 
 
 ## Task 1: Clone the git repository
@@ -137,6 +139,16 @@ But forking is quicker to do when appropriate.
 It does *not* need to be done on each computer that you use. 
 
 
+## Task 8: Commit and push your work
+
+1. Stay in the `automation_labs` folder.
+2. Run `git status` and confirm that it shows a change to `README.md`.
+3. Type `git add README.md` to add the changed `README.md` file to this commit.
+4. Run `git status` and notice it shows the file as staged.
+5. Run `git commit -m 'readme file updated'`. The `-m` switch specifies the *commit message* that appears in the log. If you don't specify `-m` an editor will open up, which isn't always easiest on Windows. So best to get into the habit of using the `-m` switch everywhere.
+6. Run `git push` to push your changes to the DkIT GitLab server. It will ask for your DkIT username / password. 
+
+
 ## Reflection
 
 Consider the following questions before the next lab:
@@ -145,3 +157,4 @@ Consider the following questions before the next lab:
    - Were there any commonalities in these tasks?
 2. Which parts of today's work did you find challenging, difficult or unpleasant?
    - Were there any commonalities in these tasks? 
+3. Were there any parts of today's work that you would have seen the opportunity for you or the lecturer to automate further to make things easier for you? 
