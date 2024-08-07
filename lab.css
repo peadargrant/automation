@@ -1,0 +1,17 @@
+/*
+CSS file for automation module documents
+Peadar Grant
+*/
+
+h1 {
+    background-color: black;
+    color: white;
+}
+
+h2 {
+    background-color: cyan;
+}
+
+pre, code {
+    font-size: 120%;
+}
