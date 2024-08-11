@@ -139,7 +139,17 @@ But forking is quicker to do when appropriate.
 It does *not* need to be done on each computer that you use. 
 
 
-## Task 8: Commit and push your work
+## Task 8: Git config
+
+Git infers usernames and e-mail addresses to record commits against.
+Sometimes it will refuse to commit until you've explicitly set these.
+
+	git config --global user.name "Your name here"
+	git config --global user.email "D00000000@student.dkit.ie"
+	
+
+
+## Task 9: Commit and push your work
 
 1. Stay in the `automation_labs` folder.
 2. Run `git status` and confirm that it shows a change to `README.md`.
