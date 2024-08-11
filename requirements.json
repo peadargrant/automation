@@ -15,6 +15,12 @@
 		"windows": "https://github.com/jgm/pandoc/releases/download/3.2.1/pandoc-3.2.1-windows-x86_64.msi"
 	    }
 	},
+	"python": {
+	    "enabled": true,
+	    "guidance": {
+		"windows": "Install from official python link, not via Window Store"
+	    }
+	},
 	"aws": {
 	    "enabled": false,
 	    "compulsory": false,
