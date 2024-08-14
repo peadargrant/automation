@@ -1,6 +1,8 @@
 # Lab client setup for automation module
 
-**NOT COMPLETE** do not start working on this lab yet!
+**STOP:** Do not start working on this lab yet. It is not complete.
+
+**TODO:** confirm setup for 2024
 
 Today's lab will set up a number of things we need on the client side for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
@@ -12,9 +14,9 @@ If you don't have this working please use the self service password reset utilit
 You will need it for many of the instructions below.
 
 **Lab computers:**
-You must use the lab computers for these instructions.
-You're welcome to attempt / repeat the steps on your own laptop or home computer but I have designed the instructions to work within the wired specialist lab network environment at DkIT.
-I suspect that they won't (easily) work as written outside of this environment!
+You must use the lab computers for these instructions:
+- You're welcome to attempt / repeat the steps on your own laptop or home computer but I have designed the instructions to work within the wired specialist lab network environment at DkIT.
+- I suspect that they won't (easily) work as written outside of this environment!
 
 **Remote access:**
 *This section needs clarification depending on what remote access facilities are installed over summer 2024.*
