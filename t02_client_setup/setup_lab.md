@@ -76,12 +76,12 @@ Make sure you like where you're sitting!
 To confirm that the lab PC you are using has the software requirements:
 
 1. Open up a new Powershell window and navigate to the `automation` folder.
-2. Run the `./client_check_windows.ps1` script in this folder.
+2. Run the `./client_check.ps1` script in this folder.
 3. Confirm that it says `system ok for automation module`.
 
 **Note:**
-there are also two Bash scripts to check Mac and Linux client systems for compatibility.
-These are experimental as all the lab machines run Windows 11.
+There is also a Bash script to check Mac and Linux client systems for compatibility.
+This is experimental as all the lab machines run Windows 11.
 
 
 ## Task 4: XOA request
