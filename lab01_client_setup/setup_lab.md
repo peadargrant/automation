@@ -1,8 +1,4 @@
-# Lab client setup for automation module
-
-**STOP:** Do not start working on this lab yet. It is not complete.
-
-**TODO:** confirm setup for 2024
+# Client setup lab
 
 Today's lab will set up a number of things we need on the client side for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
@@ -14,15 +10,14 @@ If you don't have this working please use the self service password reset utilit
 You will need it for many of the instructions below.
 
 **Lab computers:**
-You must use the lab computers for these instructions:
+You **must use** the **lab computers** for these instructions:
+
 - You're welcome to attempt / repeat the steps on your own laptop or home computer but I have designed the instructions to work within the wired specialist lab network environment at DkIT.
 - I suspect that they won't (easily) work as written outside of this environment!
-
-**Remote access:**
-*This section needs clarification depending on what remote access facilities are installed over summer 2024.*
+- Part of this module's aim is to help you automate setup on different machines that aren't always entirely under your own control!
 
 
-## Task 1: Clone the git repository
+## Task 1: Clone the module git repository
 
 We will be using the `git ` source code control system a lot in this module.
 First, I will use it to distribute all the files you need to you on an ongoing basis.
@@ -38,9 +33,9 @@ You will start today using it to maintain your on-going lab work for assessment.
 
 ### Web access
 
-As you can see from the URL, `git` uses `https` and other protocols to work with so-called remotes.
+As you can see from the URL, `git` uses `https` and other protocols to work with so-called *remotes*.
 Because I have used GitHub you can browse all the course files via the web including on your smartphone.
-This is *not* a substitute for cloning and updating the course files!
+This is *not* a substitute for cloning and updating the course files yourself!
 
 
 ### OneDrive issues
@@ -62,10 +57,11 @@ Windows by default limits script execution.
 These instructions will remove this limitation. 
 
 1. Open Windows Terminal.
-2. Make sure that the prompt shows beginning with `PS` to show it's PowerShell and not the older `cmd` shell.
+2. Make sure that the prompt shows `PS` to show it's PowerShell and not the older `cmd` shell.
 3. Run the command `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` .
 4. Close and re-open Windows Terminal.  If you don't do this, the changes sometimes don't take effect.
 5. Run the command `Get-ExecutionPolicy` and confirm it shows as `RemoteSigned`.
+6. Test by running the './test_script.ps1' script in this folder.
 
 This sets the `RemoteSigned` execution policy and applies it to the `CurrentUser` scope.
 Because you're not an administrator if you try to apply it to `LocalMachine` it won't work. 
@@ -73,7 +69,7 @@ Because you're not an administrator if you try to apply it to `LocalMachine` it 
 
 ## Task 3: PC setup
 
-You are going to find it easiest to always use the same lab PC for the module.
+You will find it easiest to always use the same lab PC for the module.
 Make sure you like where you're sitting!
 To confirm that the lab PC you are using has the software requirements:
 
@@ -88,9 +84,10 @@ This is experimental as all the lab machines run Windows 11.
 
 ## Task 4: XOA request
 
-We will make use of the XOA virtualisation system in DkIT later in this module.
+We will make use of the XOA virtualisation system in DkIT later on in this module.
 
-**Note:** the following two steps might seem illogical and out-of-sequence, but they must be done in the order shown below.
+**Important Note:**
+the following two steps might seem illogical and out-of-sequence, but they must be done in the order shown below.
 If you don't first login to XOA you won't have a User profile for the technical staff to assign permissions to.
 Therefore please follow the steps below exactly in the order shown: 
 
@@ -113,7 +110,7 @@ There is no need to tick any of the optional boxes in the request.
 
 ### Step 3: Wait for permissions to be granted
 
-Granting permissions needs some manual input from the technical staff.
+Granting permissions needs some manual verification and input from the technical staff.
 It will probably be completed by the next time we have a lab, which is plenty of time.
 
 
@@ -126,7 +123,7 @@ This task will set up your lab folder on the GitLab server.
 Make sure that you're always using the school's URL. 
 
 I will monitor your progress manually and automatically throughout the semester using the GitLab server.
-To facilitate this you will add me to your lab work repository. 
+To facilitate this you will add me as a member of your lab work repository.
 
 **Forking:** is a way to create your own copy of a project on a system like GitLab or GitHub.
 We could have done it by you cloning a copy of the labs from my account, creating a new repo on your own account and pushing to that instead.
@@ -147,12 +144,15 @@ But forking is quicker to do when appropriate.
 
 We'll now *clone* the repository you've created in the previous task to the local client computer.
 Later on, you'll also clone your repository to other virtual machines that you create.
+You can also clone the repository to your own device(s) at home.
+
 This will give you a local isolated copy of all files in your repository that you can work on during the labs.
-When you're finished, you'll commit the changes (capturing them) and push them (sending them to GitLab).
+When you're finished, you'll commit the changes (capturing them as a snapshot) and push them (sending them to GitLab).
 
 1. Open PowerShell.
 2. Navigate to your home directory (if required), should be `C:\Users\D92929292` or similar.
    - **Note:** make sure you're *not* in the `automation` folder itself.
+   - Use `pwd` to check your location if not sure!
    - Accidentally nesting a git repository inside another *will* cause *serious* confusion to you!
 3. Type `git clone ` but don't press enter.
 4. In your browser go to your project page on GitLab and hit the blue `Code` button.
@@ -181,7 +181,9 @@ Sometimes it will refuse to commit until you've explicitly set these.
 	
 
 
-## Task 9: Commit and push your work
+## Task 9: Commit and push your work from this lab
+
+You'll follow these stesps at the end of each lab:
 
 1. Stay in the `automation_labs` folder.
 2. Run `git status` and confirm that it shows a change to `README.md`.
