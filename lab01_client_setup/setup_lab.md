@@ -179,6 +179,7 @@ Sometimes it will refuse to commit until you've explicitly set these.
 	git config --global user.name "Your name here"
 	git config --global user.email "D00000000@student.dkit.ie"
 	
+Of course, you could instead use the provided `git_config.ps1` script which will do this for you!
 
 
 ## Task 9: Commit and push your work from this lab
