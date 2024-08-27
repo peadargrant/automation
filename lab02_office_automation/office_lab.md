@@ -19,16 +19,16 @@ It's designed to force you to think about relative file paths, and revise the co
 ## Task 2: Create this topic's lab folder
 
 1. Ensure you are in your `automation_lab` folder.
-2. In your lab folder, create a folder named `t03_office` using `mkdir t03_office`.
-3. Change into your new `t03_office` folder.
+2. In your lab folder, create a folder named `lab02` using `mkdir lab02`.
+3. Change into your new `lab02` folder.
 
 
 ## Task 3: Copy the starting files
 
-1. Ensure that you are in your `t03_office` folder.
+1. Ensure that you are in your `lab02` folder.
 2. Run the appropriate copy command to copy `sports_
 absence_1.ps1` and `absence_form_template.docx` files from the course notes into the lab folder.
-3. Use `dir` or `ls` to confirm that the required files are in place.
+3. Use `dir` or `ls` to confirm that the required files are in place in your `lab02` folder.
 
 
 ## Task 4: Run the sample code
