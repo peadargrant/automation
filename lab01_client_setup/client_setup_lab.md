@@ -1,4 +1,4 @@
-# Client setup lab
+% Client setup lab
 
 Today's lab will set up a number of things we need on the client side for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
@@ -17,7 +17,7 @@ You **must use** the **lab computers** for these instructions:
 - Part of this module's aim is to help you automate setup on different machines that aren't always entirely under your own control!
 
 
-## Task 1: Clone the module git repository
+# Task 1: Clone the module git repository
 
 We will be using the `git ` source code control system a lot in this module.
 First, I will use it to distribute all the files you need to you on an ongoing basis.
@@ -31,14 +31,14 @@ You will start today using it to maintain your on-going lab work for assessment.
 5. Close PowerShell.
 
 
-### Web access
+## Web access
 
 As you can see from the URL, `git` uses `https` and other protocols to work with so-called *remotes*.
 Because I have used GitHub you can browse all the course files via the web including on your smartphone.
 This is *not* a substitute for cloning and updating the course files yourself!
 
 
-### OneDrive issues
+## OneDrive issues
 
 **TL;DR:** Keep source code files in this module (and others, unless advised by your lecturer!) *well away* from OneDrive.
 
@@ -50,7 +50,7 @@ Git does not like any other system like OneDrive interfering with its hidden fil
 If you use a git repository on multiple computers you should `clone`, `pull` and `push` on each separately in a non-OneDrive folder.
 
 
-## Task 2: Enabling PowerShell script execution
+# Task 2: Enabling PowerShell script execution
 
 We're going to be using PowerShell a lot (although not exclusively) on the Windows client side in different parts of this module.
 Windows by default limits script execution.
@@ -67,7 +67,7 @@ This sets the `RemoteSigned` execution policy and applies it to the `CurrentUser
 Because you're not an administrator if you try to apply it to `LocalMachine` it won't work. 
 
 
-## Task 3: PC setup
+# Task 3: PC setup
 
 You will find it easiest to always use the same lab PC for the module.
 Make sure you like where you're sitting!
@@ -82,7 +82,7 @@ There is also a Bash script to check Mac and Linux client systems for compatibil
 This is experimental as all the lab machines run Windows 11.
 
 
-## Task 4: XOA request
+# Task 4: XOA request
 
 We will make use of the XOA virtualisation system in DkIT later on in this module.
 
@@ -92,7 +92,7 @@ If you don't first login to XOA you won't have a User profile for the technical 
 Therefore please follow the steps below exactly in the order shown: 
 
 
-### Step 1: Login to XOA
+## Step 1: Login to XOA
 
 First you need to login to XOA itself with your DkIT credentials to create a User profile on it at the following URL:
 `https://xoa.comp.dkit.ie`.
@@ -101,20 +101,20 @@ You will be able to login to XOA but not create any VMs or other resources.
 It has however created your user profile.
 
 
-### Step 2: Request permissions
+## Step 2: Request permissions
 
 To be granted full access to XOA, you will then need to request permissions from the following URL: `https://xoarequest.comp.dkit.ie`.
 
 There is no need to tick any of the optional boxes in the request.
 
 
-### Step 3: Wait for permissions to be granted
+## Step 3: Wait for permissions to be granted
 
 Granting permissions needs some manual verification and input from the technical staff.
 It will probably be completed by the next time we have a lab, which is plenty of time.
 
 
-## Task 5: GitLab setup for labs
+# Task 5: GitLab setup for labs
 
 In this module you are required to maintain your lab work in the School GitLab server **on an ongoing basis**.
 This task will set up your lab folder on the GitLab server.
@@ -140,7 +140,7 @@ But forking is quicker to do when appropriate.
 9. Put `grantp` in the Username box, set `Role` to `Developer` and hit `Invite`.
 
 
-## Task 6: Clone your lab folder
+# Task 6: Clone your lab folder
 
 We'll now *clone* the repository you've created in the previous task to the local client computer.
 Later on, you'll also clone your repository to other virtual machines that you create.
@@ -161,7 +161,7 @@ When you're finished, you'll commit the changes (capturing them as a snapshot) a
 7. If you list the directory using `ls` you should now see the `automation_labs` folder as well as `automation` folder.
 
 
-## Task 7: Set up your lab folder
+# Task 7: Set up your lab folder
 
 1. Navigate into the `automation_labs` folder.
 2. Run the `./setup_lab_folder.py` program.
@@ -171,7 +171,7 @@ When you're finished, you'll commit the changes (capturing them as a snapshot) a
 It does *not* need to be done on each computer that you use. 
 
 
-## Task 8: Git config
+# Task 8: Git config
 
 Git infers usernames and e-mail addresses to record commits against.
 Sometimes it will refuse to commit until you've explicitly set these.
@@ -182,7 +182,7 @@ Sometimes it will refuse to commit until you've explicitly set these.
 Of course, you could instead use the provided `git_config.ps1` script which will do this for you!
 
 
-## Task 9: Commit and push your work from this lab
+# Task 9: Commit and push your work from this lab
 
 You'll follow these stesps at the end of each lab:
 
@@ -197,7 +197,7 @@ You'll follow these stesps at the end of each lab:
 6. Run `git push` to push your changes to the DkIT GitLab server. It will ask for your DkIT username / password. 
 
 
-## Reflection
+# Reflection
 
 Consider the following questions before the next lab:
 

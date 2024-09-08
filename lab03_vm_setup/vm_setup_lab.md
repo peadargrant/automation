@@ -1,4 +1,4 @@
-# VM setup
+% VM setup
 
 **TODO:** verify against lab setup 2024
 
@@ -14,7 +14,7 @@ You can also try these out on a cloud-based VM such as Digital Ocean or build up
 Later labs will use multiple VMs so cost could be an issue if you experiment with this on the cloud. 
 
 
-## Task 1: VM creation
+# Task 1: VM creation
 
 1. Login to https://xoa.comp.dkit.ie/ using your DkIT username and password.
 2. Make sure you see the *New VM* button.   If not, you need to request permissions and wait for them to be granted.
@@ -22,7 +22,7 @@ Later labs will use multiple VMs so cost could be an issue if you experiment wit
 4. **TODO:** COMPLETE INSTRUCTIONS AS PER INSTALLED XOA SETUP!
 
 
-## Task 2: Connect to VM
+# Task 2: Connect to VM
 
 1. In XOA look for the IP address of your instance. Note it down. 
 2. In windows terminal run the command `ssh student@ip-address-here`. 
@@ -31,7 +31,7 @@ Later labs will use multiple VMs so cost could be an issue if you experiment wit
 5. Confirm that you see the bash prompt.
 
 
-## Task 3: Transfer public key
+# Task 3: Transfer public key
 
 We're going to use your VM a lot.
 Instead of entering the password each time we'll use a keypair instead to login.
@@ -54,14 +54,14 @@ Use the `pwd` and `lpwd` commands liberally if you are not sure!
 7. Terminate the connection using `exit`.
 
 
-## Task 4: Connect to VM using public key
+# Task 4: Connect to VM using public key
 
 1. In windows terminal run the command `ssh student@ip-address-here`. 
 2. You should go straight to the prompt without it asking for a server password.
 3. Stay connected and move on to the next task.
 
 
-## Task 5: Software update
+# Task 5: Software update
 
 1. Run `sudo apt -y update` to update the package lists. The `-y` bypasses the confirmation prompt.
 2. Run `sudo apt -y upgrade` to upgrade packages that are out of date. As in the previous step the `-y`switch bypasses the confirmation prompt.
@@ -70,14 +70,14 @@ Use the `pwd` and `lpwd` commands liberally if you are not sure!
 5. Give it time to reboot and then re-connect.
 
 
-## Task 6: Clone the automation code
+# Task 6: Clone the automation code
 
 1. Ensure that you're in your home directory. Run `cd` on its own to make to sure.
 2. Use `git clone https://github.com/peadargrant/automation.git` to clone the automation folder.
 3. Use `ls` to confirm that the `automation` folder now exists in your home folder.
 
 
-## Task 7: Git config setup
+# Task 7: Git config setup
 
 As with Windows, Git needs to be configured with your name and e-mail address for logging commit activity.
 Let's set them now. 
@@ -86,11 +86,11 @@ Let's set them now.
 	git config --global user.email "D00000000@student.dkit.ie"
 
 
-## Task 8: Clone your lab folder
+# Task 8: Clone your lab folder
 
 We'll also *clone* your lab repository. 
 
-### Step 1: Getting the remote URL
+## Step 1: Getting the remote URL
 
 You could look this up from GitLab but it's quicker to:
 
@@ -99,7 +99,7 @@ You could look this up from GitLab but it's quicker to:
 3. Use `git remote get-url origin` to show the URL of your lab code folder.
 
 
-### Step 2: Clone from the remote URL
+## Step 2: Clone from the remote URL
 
 1. On the *linux* machine, ensure that you're in your home directory. 
    Run `cd` on its own to make to sure.
@@ -108,7 +108,7 @@ You could look this up from GitLab but it's quicker to:
 4. If you list the directory using `ls` you should now see the `automation_labs` folder as well as `automation` folder.
 
 
-## Task 9: Run the VM check script
+# Task 9: Run the VM check script
 
 Just as with the local PC, I've given you a VM check script.
 

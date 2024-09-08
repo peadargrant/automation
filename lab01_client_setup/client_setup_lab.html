@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Client setup lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Client setup lab</h1>
+</header>
+<p>Today’s lab will set up a number of things we need on the client side
+for the automation module. The steps are also designed to re-familiarise
+yourself with some concepts needed from previous modules and experience.
+There are a lot of different things to do but most are not particularly
+challenging, so make sure that you keep to time.</p>
+<p><strong>DkIT login:</strong> We will be using a number of services
+that require your DkIT login. If you don’t have this working please use
+the self service password reset utility or seek advice from the
+technical staff immediately. You will need it for many of the
+instructions below.</p>
+<p><strong>Lab computers:</strong> You <strong>must use</strong> the
+<strong>lab computers</strong> for these instructions:</p>
+<ul>
+<li>You’re welcome to attempt / repeat the steps on your own laptop or
+home computer but I have designed the instructions to work within the
+wired specialist lab network environment at DkIT.</li>
+<li>I suspect that they won’t (easily) work as written outside of this
+environment!</li>
+<li>Part of this module’s aim is to help you automate setup on different
+machines that aren’t always entirely under your own control!</li>
+</ul>
+<h1 id="task-1-clone-the-module-git-repository">Task 1: Clone the module
+git repository</h1>
+<p>We will be using the <code>git</code> source code control system a
+lot in this module. First, I will use it to distribute all the files you
+need to you on an ongoing basis. You will start today using it to
+maintain your on-going lab work for assessment.</p>
+<ol type="1">
+<li>Open up PowerShell in Windows Terminal and navigate to your home
+folder using <code>cd</code>. (Folder path should look like
+<code>C:\Users\D92929292</code>)</li>
+<li>Run the command
+<code>git clone https://github.com/peadargrant/automation.git</code>.</li>
+<li>Use <code>ls</code> to confirm that the <code>automation</code>
+folder now exists in your home folder.</li>
+<li>Confirm visually using Explorer that the <code>automation</code>
+folder appears.</li>
+<li>Close PowerShell.</li>
+</ol>
+<h2 id="web-access">Web access</h2>
+<p>As you can see from the URL, <code>git</code> uses <code>https</code>
+and other protocols to work with so-called <em>remotes</em>. Because I
+have used GitHub you can browse all the course files via the web
+including on your smartphone. This is <em>not</em> a substitute for
+cloning and updating the course files yourself!</p>
+<h2 id="onedrive-issues">OneDrive issues</h2>
+<p><strong>TL;DR:</strong> Keep source code files in this module (and
+others, unless advised by your lecturer!) <em>well away</em> from
+OneDrive.</p>
+<p>From experience, do not locate <code>git</code>-managed folders on
+OneDrive. This includes folders like Documents and Desktop if you’ve set
+them to be redirected to OneDrive. (The problem is, OneDrive likes to
+encourge folks to do this!)</p>
+<p>Git does not like any other system like OneDrive interfering with its
+hidden files, timestamps etc. If you use a git repository on multiple
+computers you should <code>clone</code>, <code>pull</code> and
+<code>push</code> on each separately in a non-OneDrive folder.</p>
+<h1 id="task-2-enabling-powershell-script-execution">Task 2: Enabling
+PowerShell script execution</h1>
+<p>We’re going to be using PowerShell a lot (although not exclusively)
+on the Windows client side in different parts of this module. Windows by
+default limits script execution. These instructions will remove this
+limitation.</p>
+<ol type="1">
+<li>Open Windows Terminal.</li>
+<li>Make sure that the prompt shows <code>PS</code> to show it’s
+PowerShell and not the older <code>cmd</code> shell.</li>
+<li>Run the command
+<code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>
+.</li>
+<li>Close and re-open Windows Terminal. If you don’t do this, the
+changes sometimes don’t take effect.</li>
+<li>Run the command <code>Get-ExecutionPolicy</code> and confirm it
+shows as <code>RemoteSigned</code>.</li>
+<li>Test by running the ‘./test_script.ps1’ script in this folder.</li>
+</ol>
+<p>This sets the <code>RemoteSigned</code> execution policy and applies
+it to the <code>CurrentUser</code> scope. Because you’re not an
+administrator if you try to apply it to <code>LocalMachine</code> it
+won’t work.</p>
+<h1 id="task-3-pc-setup">Task 3: PC setup</h1>
+<p>You will find it easiest to always use the same lab PC for the
+module. Make sure you like where you’re sitting! To confirm that the lab
+PC you are using has the software requirements:</p>
+<ol type="1">
+<li>Open up a new Powershell window and navigate to the
+<code>automation</code> folder.</li>
+<li>Run the <code>./client_check.ps1</code> script in this folder.</li>
+<li>Confirm that it says
+<code>system ok for automation module</code>.</li>
+</ol>
+<p><strong>Note:</strong> There is also a Bash script to check Mac and
+Linux client systems for compatibility. This is experimental as all the
+lab machines run Windows 11.</p>
+<h1 id="task-4-xoa-request">Task 4: XOA request</h1>
+<p>We will make use of the XOA virtualisation system in DkIT later on in
+this module.</p>
+<p><strong>Important Note:</strong> the following two steps might seem
+illogical and out-of-sequence, but they must be done in the order shown
+below. If you don’t first login to XOA you won’t have a User profile for
+the technical staff to assign permissions to. Therefore please follow
+the steps below exactly in the order shown:</p>
+<h2 id="step-1-login-to-xoa">Step 1: Login to XOA</h2>
+<p>First you need to login to XOA itself with your DkIT credentials to
+create a User profile on it at the following URL:
+<code>https://xoa.comp.dkit.ie</code>.</p>
+<p>You will be able to login to XOA but not create any VMs or other
+resources. It has however created your user profile.</p>
+<h2 id="step-2-request-permissions">Step 2: Request permissions</h2>
+<p>To be granted full access to XOA, you will then need to request
+permissions from the following URL:
+<code>https://xoarequest.comp.dkit.ie</code>.</p>
+<p>There is no need to tick any of the optional boxes in the
+request.</p>
+<h2 id="step-3-wait-for-permissions-to-be-granted">Step 3: Wait for
+permissions to be granted</h2>
+<p>Granting permissions needs some manual verification and input from
+the technical staff. It will probably be completed by the next time we
+have a lab, which is plenty of time.</p>
+<h1 id="task-5-gitlab-setup-for-labs">Task 5: GitLab setup for labs</h1>
+<p>In this module you are required to maintain your lab work in the
+School GitLab server <strong>on an ongoing basis</strong>. This task
+will set up your lab folder on the GitLab server.</p>
+<p><strong>Note:</strong> GitLab also have a public service like GitHub.
+Make sure that you’re always using the school’s URL.</p>
+<p>I will monitor your progress manually and automatically throughout
+the semester using the GitLab server. To facilitate this you will add me
+as a member of your lab work repository.</p>
+<p><strong>Forking:</strong> is a way to create your own copy of a
+project on a system like GitLab or GitHub. We could have done it by you
+cloning a copy of the labs from my account, creating a new repo on your
+own account and pushing to that instead. But forking is quicker to do
+when appropriate.</p>
+<ol type="1">
+<li>Login to the <strong>school</strong> GitLab instance at
+<code>https://gitlab.comp.dkit.ie</code> with your DkIT
+credentials.</li>
+<li>Go to the project
+<code>https://gitlab.comp.dkit.ie/grantp/automation_labs</code>.</li>
+<li>Click the <code>Fork</code> button.</li>
+<li>Leave everything alone on the page. Click <code>Fork</code>
+again.</li>
+<li>You’ll be redirecting to a holding page. Wait until it
+refreshes.</li>
+<li>You should now see a new project.</li>
+<li>Go to the left hand bar, click <code>Manage</code> and then
+<code>Members</code>.</li>
+<li>Click the blue <code>Invite members</code> button on the top
+right.</li>
+<li>Put <code>grantp</code> in the Username box, set <code>Role</code>
+to <code>Developer</code> and hit <code>Invite</code>.</li>
+</ol>
+<h1 id="task-6-clone-your-lab-folder">Task 6: Clone your lab folder</h1>
+<p>We’ll now <em>clone</em> the repository you’ve created in the
+previous task to the local client computer. Later on, you’ll also clone
+your repository to other virtual machines that you create. You can also
+clone the repository to your own device(s) at home.</p>
+<p>This will give you a local isolated copy of all files in your
+repository that you can work on during the labs. When you’re finished,
+you’ll commit the changes (capturing them as a snapshot) and push them
+(sending them to GitLab).</p>
+<ol type="1">
+<li>Open PowerShell.</li>
+<li>Navigate to your home directory (if required), should be
+<code>C:\Users\D92929292</code> or similar.
+<ul>
+<li><strong>Note:</strong> make sure you’re <em>not</em> in the
+<code>automation</code> folder itself.</li>
+<li>Use <code>pwd</code> to check your location if not sure!</li>
+<li>Accidentally nesting a git repository inside another <em>will</em>
+cause <em>serious</em> confusion to you!</li>
+</ul></li>
+<li>Type <code>git clone</code> but don’t press enter.</li>
+<li>In your browser go to your project page on GitLab and hit the blue
+<code>Code</code> button.</li>
+<li>Copy the <code>Clone with HTTPS</code> URL from the box.</li>
+<li>Paste after the <code>git clone</code> command and run it.</li>
+<li>If you list the directory using <code>ls</code> you should now see
+the <code>automation_labs</code> folder as well as
+<code>automation</code> folder.</li>
+</ol>
+<h1 id="task-7-set-up-your-lab-folder">Task 7: Set up your lab
+folder</h1>
+<ol type="1">
+<li>Navigate into the <code>automation_labs</code> folder.</li>
+<li>Run the <code>./setup_lab_folder.py</code> program.</li>
+<li>Answer any required questions.</li>
+</ol>
+<p><strong>Note:</strong> you only need to do this once for your labs
+repository! It does <em>not</em> need to be done on each computer that
+you use.</p>
+<h1 id="task-8-git-config">Task 8: Git config</h1>
+<p>Git infers usernames and e-mail addresses to record commits against.
+Sometimes it will refuse to commit until you’ve explicitly set
+these.</p>
+<pre><code>git config --global user.name &quot;Your name here&quot;
+git config --global user.email &quot;D00000000@student.dkit.ie&quot;</code></pre>
+<p>Of course, you could instead use the provided
+<code>git_config.ps1</code> script which will do this for you!</p>
+<h1 id="task-9-commit-and-push-your-work-from-this-lab">Task 9: Commit
+and push your work from this lab</h1>
+<p>You’ll follow these stesps at the end of each lab:</p>
+<ol type="1">
+<li>Stay in the <code>automation_labs</code> folder.</li>
+<li>Run <code>git status</code> and confirm that it shows a change to
+<code>README.md</code>.</li>
+<li>Type <code>git add README.md</code> to add the changed
+<code>README.md</code> file to this commit.</li>
+<li>Run <code>git status</code> and notice it shows the file as
+staged.</li>
+<li>Run <code>git commit -m 'readme file updated'</code>:
+<ul>
+<li>The <code>-m</code> switch specifies the <em>commit message</em>
+that appears in the log.</li>
+<li>If you don’t specify <code>-m</code> an editor will open up, which
+isn’t always easiest on Windows.</li>
+<li>So best to get into the habit of using the <code>-m</code> switch
+everywhere.</li>
+</ul></li>
+<li>Run <code>git push</code> to push your changes to the DkIT GitLab
+server. It will ask for your DkIT username / password.</li>
+</ol>
+<h1 id="reflection">Reflection</h1>
+<p>Consider the following questions before the next lab:</p>
+<ol type="1">
+<li>Which parts of today’s work did you find easy, straightforward
+and/or enjoyable?
+<ul>
+<li>Were there any commonalities in these tasks?</li>
+</ul></li>
+<li>Which parts of today’s work did you find challenging, difficult or
+unpleasant?
+<ul>
+<li>Were there any commonalities in these tasks?</li>
+</ul></li>
+<li>Were there any parts of today’s work that you would have seen the
+opportunity for you or the lecturer to automate further to make things
+easier for you?</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Office automation lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Office automation lab</h1>
+</header>
+<p><strong>STOP:</strong> Do not start working on this lab yet. It is
+not complete.</p>
+<p><strong>Command-line usage:</strong> These instructions all prefer /
+encourage / promote use of the PowerShell command-line rather than the
+explorer GUI for file operations. This is deliberate. It’s designed to
+force you to think about relative file paths, and revise the commands
+relevant to directory navigation and file manipulation.</p>
+<h1 id="task-1-lab-folder-update">Task 1: Lab folder update</h1>
+<ol type="1">
+<li>Open Windows Terminal.</li>
+<li>Ensure that it’s running PowerShell by looking for <code>PS</code>
+at the prompt.</li>
+<li>Navigate to your <code>automation_lab</code> folder.</li>
+<li>Run <code>git pull --rebase</code> to pull any updates from GitLab.
+(There should be no issues with this!)</li>
+</ol>
+<h1 id="task-2-create-this-topics-lab-folder">Task 2: Create this
+topic’s lab folder</h1>
+<ol type="1">
+<li>Ensure you are in your <code>automation_lab</code> folder.</li>
+<li>In your lab folder, create a folder named <code>lab02</code> using
+<code>mkdir lab02</code>.</li>
+<li>Change into your new <code>lab02</code> folder.</li>
+</ol>
+<h1 id="task-3-copy-the-starting-files">Task 3: Copy the starting
+files</h1>
+<ol type="1">
+<li>Ensure that you are in your <code>lab02</code> folder.</li>
+<li>Run the appropriate copy command to copy
+<code>sports_ absence_1.ps1</code> and
+<code>absence_form_template.docx</code> files from the course notes into
+the lab folder.</li>
+<li>Use <code>dir</code> or <code>ls</code> to confirm that the required
+files are in place in your <code>lab02</code> folder.</li>
+</ol>
+<h1 id="task-4-run-the-sample-code">Task 4: Run the sample code</h1>
+<ol type="1">
+<li>Run the sample code, filling in any information you like, and
+confirm that the sample works.</li>
+</ol>
+<h1 id="task-5-make-your-own">Task 5: Make your own</h1>
+<ol type="1">
+<li>Choose a document that you might have to fill in often with
+different information (e.g. continuous assessment, coversheets,
+application forms).</li>
+<li>Start with the sports absence script by copying it to a new file
+<code>fill_form.ps1</code>.</li>
+<li>Save your starting template as <code>form_template.docx</code>.</li>
+<li>Modify the template file and script to open the new template, fill
+in the required fields and then save it (as something other than
+<code>form_template.docx</code>).</li>
+</ol>
+<h1 id="task-6-print-send-convert-optional">Task 6: Print / send /
+convert (optional)</h1>
+<p><strong>If you don’t have time for this section, skip on ahead to the
+following tasks before leaving the lab.</strong></p>
+<p>If you’ve go this far, see if you can automatically print or e-mail
+this file.</p>
+<p>On the lab computers emailing is going to be difficult unless you’ve
+got the local Microsoft Office Outlook application already set up with
+your e-mail account.</p>
+<h1 id="task-7-commit-and-push-your-work">Task 7: Commit and push your
+work</h1>
+<ol type="1">
+<li>Add the following files using <code>git add</code>:
+<ul>
+<li><code>sports_absence_1.ps1</code></li>
+<li><code>abscence_form_template.ps1</code></li>
+<li><code>fill_form.ps1</code></li>
+<li><code>form_template.docx</code></li>
+</ul></li>
+<li>Commit your work using
+<code>git commit -m 'lab work on office automation'</code> or a
+similarly concise commit message.</li>
+<li>Push your work to gitlab using <code>git push</code>.</li>
+<li>Confirm with me on your way out that I’ve seen your commits in
+gitlab.</li>
+</ol>
+</body>
+</html>

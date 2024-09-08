@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>VM setup</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">VM setup</h1>
+</header>
+<p><strong>TODO:</strong> verify against lab setup 2024</p>
+<p>We will do a lot of our work for this module in a Linux / UNIX
+environment. For this purpose you will use a VM on the XOA
+virtualisation environment installed in the school.</p>
+<p>Today’s lab covers some practicalities involved, particularly SSH,
+and sets up a single VM with useful linux tools. It partially mirrors
+the client setup on the Windows side that you saw at the beginning of
+the module.</p>
+<p><strong>Note:</strong> You can try these out on a local VM (and later
+VMs) on your local machine instead of XOA. You can also try these out on
+a cloud-based VM such as Digital Ocean or build up the required VM using
+AWS/Azure. Later labs will use multiple VMs so cost could be an issue if
+you experiment with this on the cloud.</p>
+<h1 id="task-1-vm-creation">Task 1: VM creation</h1>
+<ol type="1">
+<li>Login to https://xoa.comp.dkit.ie/ using your DkIT username and
+password.</li>
+<li>Make sure you see the <em>New VM</em> button. If not, you need to
+request permissions and wait for them to be granted.</li>
+<li>Click the <em>New VM</em> button.</li>
+<li><strong>TODO:</strong> COMPLETE INSTRUCTIONS AS PER INSTALLED XOA
+SETUP!</li>
+</ol>
+<h1 id="task-2-connect-to-vm">Task 2: Connect to VM</h1>
+<ol type="1">
+<li>In XOA look for the IP address of your instance. Note it down.</li>
+<li>In windows terminal run the command
+<code>ssh student@ip-address-here</code>.</li>
+<li>Answer <em>yes</em> in response to the host key query.</li>
+<li>Use the standard password as given in class.</li>
+<li>Confirm that you see the bash prompt.</li>
+</ol>
+<h1 id="task-3-transfer-public-key">Task 3: Transfer public key</h1>
+<p>We’re going to use your VM a lot. Instead of entering the password
+each time we’ll use a keypair instead to login. This will be an
+important feature later on when we use a keypair to remotely manage
+<em>other</em> linux and Windows hosts.</p>
+<p>In this section you will transfer the public key of your SSH keypair
+to it using SFTP. SFTP is a protocol with a number of implementations,
+including Graphical clients. The default client <code>sftp</code> is a
+command-line program that runs within PowerShell (or Bash on linux).</p>
+<p>When using SFTP (or FTP, or any other file transfer utility) you are
+dealing in parallel with <em>two</em> working directories: one on the
+client (local) and another on the server (remote). It can be confusing
+in a command-line environment to keep track of where you are. Use the
+<code>pwd</code> and <code>lpwd</code> commands liberally if you are not
+sure!</p>
+<ol type="1">
+<li>Without closing your SSH session from the last task, open a new tab
+in Windows terminal and run the command
+<code>sftp student@ip-address-here</code>.</li>
+<li>Use <code>pwd</code> to show the <em>remote</em> working directory
+path.</li>
+<li>Use <code>cd .ssh</code> to enter into the remote server’s
+<code>.ssh</code> directory.</li>
+<li>Use <code>lpwd</code> to display the <em>local</em> working
+directory path.</li>
+<li>Use <code>lcd .ssh</code> to enter into the local client’s
+<code>.ssh</code> directory.</li>
+<li>Transfer your public key using <code>put id_ed25519.pub</code>. Do
+<em>not</em> transfer <code>id_ed25519</code> (your private key!)</li>
+<li>Terminate the connection using <code>exit</code>.</li>
+</ol>
+<h1 id="task-4-connect-to-vm-using-public-key">Task 4: Connect to VM
+using public key</h1>
+<ol type="1">
+<li>In windows terminal run the command
+<code>ssh student@ip-address-here</code>.</li>
+<li>You should go straight to the prompt without it asking for a server
+password.</li>
+<li>Stay connected and move on to the next task.</li>
+</ol>
+<h1 id="task-5-software-update">Task 5: Software update</h1>
+<ol type="1">
+<li>Run <code>sudo apt -y update</code> to update the package lists. The
+<code>-y</code> bypasses the confirmation prompt.</li>
+<li>Run <code>sudo apt -y upgrade</code> to upgrade packages that are
+out of date. As in the previous step the <code>-y</code>switch bypasses
+the confirmation prompt.</li>
+<li>Reboot the instance using <code>sudo reboot</code>.</li>
+<li>It will disconnect.</li>
+<li>Give it time to reboot and then re-connect.</li>
+</ol>
+<h1 id="task-6-clone-the-automation-code">Task 6: Clone the automation
+code</h1>
+<ol type="1">
+<li>Ensure that you’re in your home directory. Run <code>cd</code> on
+its own to make to sure.</li>
+<li>Use
+<code>git clone https://github.com/peadargrant/automation.git</code> to
+clone the automation folder.</li>
+<li>Use <code>ls</code> to confirm that the <code>automation</code>
+folder now exists in your home folder.</li>
+</ol>
+<h1 id="task-7-git-config-setup">Task 7: Git config setup</h1>
+<p>As with Windows, Git needs to be configured with your name and e-mail
+address for logging commit activity. Let’s set them now.</p>
+<pre><code>git config --global user.name &quot;Your name here&quot;
+git config --global user.email &quot;D00000000@student.dkit.ie&quot;</code></pre>
+<h1 id="task-8-clone-your-lab-folder">Task 8: Clone your lab folder</h1>
+<p>We’ll also <em>clone</em> your lab repository.</p>
+<h2 id="step-1-getting-the-remote-url">Step 1: Getting the remote
+URL</h2>
+<p>You could look this up from GitLab but it’s quicker to:</p>
+<ol type="1">
+<li>In Windows Terminal open a PowerShell session on your local
+client.</li>
+<li>Navigate to your <code>automation_labs</code> folder.</li>
+<li>Use <code>git remote get-url origin</code> to show the URL of your
+lab code folder.</li>
+</ol>
+<h2 id="step-2-clone-from-the-remote-url">Step 2: Clone from the remote
+URL</h2>
+<ol type="1">
+<li>On the <em>linux</em> machine, ensure that you’re in your home
+directory. Run <code>cd</code> on its own to make to sure.</li>
+<li>Type <code>git clone</code> but don’t press enter.</li>
+<li>Paste the URL from the previous step and hit enter.</li>
+<li>If you list the directory using <code>ls</code> you should now see
+the <code>automation_labs</code> folder as well as
+<code>automation</code> folder.</li>
+</ol>
+<h1 id="task-9-run-the-vm-check-script">Task 9: Run the VM check
+script</h1>
+<p>Just as with the local PC, I’ve given you a VM check script.</p>
+<ol type="1">
+<li>Change into the <code>automation</code> folder.</li>
+<li>Run the <code>./vm_check.sh</code> script.</li>
+<li>Install the required packages identified using the <code>apt</code>
+system.</li>
+</ol>
+</body>
+</html>
