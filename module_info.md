@@ -124,10 +124,12 @@ We will review and extend certain concepts again as necessary.
 - Operating Systems
 
 
-### You should have
+### Assumed knowledge
+
+You should have: 
 
 - Familiarity with command-line interfaces (built by regular routine usage of them!)
-- Basic Bash usage:
+- Basic Bash usage on Linux:
   - Concept of working directory
   - Navigating filesystem using `pwd`, `cd` and relative operators, e.g. `..`, `/` etc.
   - Manipulating files using `rm`, `mv`, `cp` etc.
@@ -135,18 +137,30 @@ We will review and extend certain concepts again as necessary.
   - Manipulating directories using `mkdir`, `rmdir` etc.
   - File permissions and ownership `chmod`, `chown` etc.
   - Use of wildcards (e.g. `*`) to refer to multiple files.
-- Basic PowerShell usage
+  - Up cursor to recall previous commands
+- Basic PowerShell usage on Windows
   - Same ideas as above for Bash required.
 - You can run a Python program in the command-line environment.
 - Accessing help on commands via switches (e.g. `-h` or similar) and using `man` command. 
 - Principle of Shell redirection (`>`, `<`) and command piping / chaining (`|`)
   - Using `Get-Content` and `Out-File` in PowerShell to achieve same aims.
-- Secure SHell (`ssh`) including key-based authentication
-- SFTP (`sftp`) operations (`get`, `put`) and concept of local/remote directory navigation (`cd`, `lcd`, etc)
+- JSON format
+  - Basic understanding of JSON structure manually
+  - Encountered JSON in files, from command output and APIs.
+  - Using `json.dump` and `json.load` in Python
+  - Using `ConvertFrom-Json` and `ConvertTo-Json` in PowerShell
+  - Use of `jq` in Bash
+- Secure SHell (`ssh`)
+  - Idea of accessing remote command-line shells on another host
+  - Key-based authentication using public/private keypair 
+  - More advanced concepts: single-command, agent forwarding etc.
+- SFTP (`sftp`)
+  - standard operations (`get`, `put`)
+  - concept of local/remote directory navigation (`cd`, `lcd`, etc)
 - Plain text editors via local GUI (e.g. notepad, emacs, VSCode) and local/remote console (`emacs`, `nano`, `vim` etc).
 - Markdown (`.md`) text formatting and conversions using tools like `pandoc`. **L8 only**
 - Working knowledge of `git` (e.g. `git pull --rebase`)
-- Experience with XOA environment in DkIT (creating and using VMs)
+- Experience with XOA environment in DkIT (creating and using Linux and Windows VMs)
 - Encountered containers (e.g. docker) **L8 only**
 - Encountered cloud environments (e.g. AWS, Azure) **HDip only**
 
@@ -160,7 +174,7 @@ There's simply no way of avoiding CLIs here!
 - Primarily lab-based: Learn by doing module.
 - Using a lot of automation ideas to learn and organise the module (e.g. PowerShell / Bash / Python scripts, git, ssh)
 - There won't be much / any PowerPoint (or similar) 
-- Notes and lab instructions are in Markdown and HTML files in the git repository.
+- Notes and lab instructions are mainly in Markdown and HTML files in the git repository.
 
 
 ## Technology choices
