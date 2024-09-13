@@ -5,7 +5,7 @@ Links below:
 
 ## Recordings list
 
-*Recordings will be linked from here.*
+1. [Introduction class](https://media.heanet.ie/page/e6f3113ceb3b4836aa8af662177d79f7)
 
 ## Please note
 
@@ -15,5 +15,3 @@ Links below:
 - Recordings may be removed at any time
 - Recordings are on a best-effort basis and are not guaranteed
 - Some classes or portions thereof will not be recorded at the lecturers discretion
-
-
