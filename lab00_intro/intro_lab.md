@@ -206,6 +206,11 @@ If you want to attempt a complete local installation of what's needed you will n
 The `client_check.ps1` and `client_check.sh` scripts (which call the `system_check.py` script) can be used to see if all required software for this module is installed on the client device you'll use for the module.
 
 
+# Class recordings (HDip class only)
+
+Sessions on Zoom will be put on HEANet Media Server and links posted to the recordings list in the GitHub repository.
+
+
 # Remote access
 
 **TODO:** confirm remote access arrangments based on new network setup 2024
