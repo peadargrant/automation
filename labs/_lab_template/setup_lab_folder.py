@@ -6,8 +6,8 @@ from argparse import ArgumentParser
 import getpass
 
 parser = ArgumentParser(description='lab folder setup script')
-parser.add_argument('--output', help='output file name')
-parser.add_argument('programme', help='programme', choices=['l8','hdip']) 
+parser.add_argument('--output', help='output file name', default='README.md')
+parser.add_argument('programme', help='programme', choices=['cso','hdip']) 
 args = parser.parse_args()
 
 username = getpass.getuser()
@@ -21,15 +21,16 @@ while not re.match(r'^D\d\d\d\d\d\d\d\d$', username):
 
 print('username is in correct pattern for dkit')
 
+if args.programme is None:
+    print('Must specify programme on the command line')
+    print('Use -h switch to see command line options.')
+
 print('selected programme: %s' % args.programme)
 
-output_filename = 'README.md'
-if args.output is not None:
-    output_filename = args.output
-print('output filename is %s' % output_filename )
+print('output filename is %s' % args.output )
 
-f = open('README.md', 'w')
+f = open(args.output, 'w')
 f.write("# Automation labs\n\n**Student ID:** %s\n\n**Course:** %s\n\n" % ( username, args.programme, ))
 f.close()
 
-print('wrote %s' % output_filename )
+print('wrote %s' % args.output )

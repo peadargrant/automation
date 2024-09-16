@@ -1,4 +1,4 @@
-% Client setup lab
+% Client setup lab for Automation module
 
 Today's lab will set up a number of things we need on the client side for the automation module.
 The steps are also designed to re-familiarise yourself with some concepts needed from previous modules and experience.
@@ -164,7 +164,7 @@ When you're finished, you'll commit the changes (capturing them as a snapshot) a
 # Task 7: Set up your lab folder
 
 1. Navigate into the `automation_labs` folder.
-2. Run the `./setup_lab_folder.py` program.
+2. Run the setup script in Python using `python ./setup_lab_folder.py` program.
 3. Answer any required questions.
 
 **Note:** you only need to do this once for your labs repository!
@@ -195,14 +195,3 @@ You'll follow these stesps at the end of each lab:
    - If you don't specify `-m` an editor will open up, which isn't always easiest on Windows.
    - So best to get into the habit of using the `-m` switch everywhere.
 6. Run `git push` to push your changes to the DkIT GitLab server. It will ask for your DkIT username / password. 
-
-
-# Reflection
-
-Consider the following questions before the next lab:
-
-1. Which parts of today's work did you find easy, straightforward and/or enjoyable?
-   - Were there any commonalities in these tasks?
-2. Which parts of today's work did you find challenging, difficult or unpleasant?
-   - Were there any commonalities in these tasks? 
-3. Were there any parts of today's work that you would have seen the opportunity for you or the lecturer to automate further to make things easier for you? 
