@@ -1,7 +1,5 @@
 % Office automation lab
 
-**STOP:** Do not start working on this lab yet. It is not complete.
-
 **Command-line usage:**
 These instructions all prefer / encourage / promote use of the PowerShell command-line rather than the explorer GUI for file operations.
 This is deliberate.
