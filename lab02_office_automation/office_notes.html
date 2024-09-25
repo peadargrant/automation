@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>office_notes</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<h1 id="office-automation-example">Office automation example</h1>
+<h2 id="aims">Aims</h2>
+<ul>
+<li>Identify opportunities to automate client-side processes</li>
+<li>Implement a basic client-side automation flow</li>
+<li>Appreciate the context and constraints of basic automation</li>
+<li>Advocate for system changes needed to enable automation</li>
+</ul>
+<h2 id="sample-scenario">Sample scenario</h2>
+<p>The sports co-ordinator at a technical college has to fill in a form
+to mail to the school office when a student needs to be released from
+class for college sports events. The administration demands that class
+release forms are completed in Word using a template they have designed,
+mailed to the School office in Word format, saved and printed for
+record. The form itself is cumbersome and needs the student’s name to be
+entered in multiple places.</p>
+<p>While the sports co-ordinator themselves is tech-savvy, comfortable
+using command-line interfaces and is solutions focused, the college
+administration are mired in cumbersome processes and very unwilling to
+change. They have rejected using Microsoft Forms or a simpler e-mail
+based request.</p>
+<p>Because of the amount of time taken and potential for mistakes, the
+sports co-ordinator wants a solution to at least quickly generate the
+forms required.</p>
+<p>They do not have Administrator access to their PC, Micosoft Office
+suite is on it, and PowerShell access seems unhindered. (Yes, some IT
+managers actually use GPO on Windows domains to disable access to
+PowerShell!)</p>
+<h2 id="approaches">Approaches</h2>
+<p>There are at least three straightforward possibilies:</p>
+<ol type="1">
+<li><p>Within Word using VBA.</p>
+<ul>
+<li>VBA is starting to look unsupported and unpromoted by Microsoft
+themselves.</li>
+</ul></li>
+<li><p>Using Python or another language to modify the template word
+document file directly.</p>
+<ul>
+<li>We don’t know whether Python is or isn’t installed, or whether it
+can be.</li>
+</ul></li>
+<li><p>Automate Word’s own find and replace operation using Python,
+Powershell or another language.</p>
+<ul>
+<li>Will definitely work once PowerShell access is unhindered.</li>
+<li>Can start with partial or incomplete automation.</li>
+</ul></li>
+</ol>
+<p>In today’s example we’ll choose the latter option, using PowerShell.
+A basic script that we’ll use for example is shown in
+<code>sports_absence_1.ps1</code>.</p>
+<h2 id="com-automation">COM automation</h2>
+<p>Microsoft Office, and many other applications, can be manipulated
+using PowerShell. This essentially exposes the same functionality that
+you’d use with the GUI to PowerShell. It’s very powerful, but can be
+confusing at first.</p>
+<h2 id="gui-visibility">GUI Visibility</h2>
+<p>In today’s example we’ll make the GUI visible. It’s possible to have
+automations that open Word (or other apps) without actually showing the
+GUI. This decision will depend on the scenario of interest, and
+sometimes will be useful during development.</p>
+<h2 id="file-mutability">File mutability</h2>
+<p>In general, mutability can trip you up!</p>
+<p>Just as when doing things manually, it’s best to avoid modifying
+files in-place where possible.</p>
+<p>Where possible, open any input (such as template files) read-only.
+After you’ve actioned changes, save the file as a new name.</p>
+</body>
+</html>
