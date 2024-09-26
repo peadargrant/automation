@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>VM setup</title>
+  <title>Linux VM setup</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -26,9 +26,8 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">VM setup</h1>
+<h1 class="title">Linux VM setup</h1>
 </header>
-<p><strong>TODO:</strong> verify against lab setup 2024</p>
 <p>We will do a lot of our work for this module in a Linux / UNIX
 environment. For this purpose you will use a VM on the XOA
 virtualisation environment installed in the school.</p>
@@ -41,6 +40,11 @@ VMs) on your local machine instead of XOA. You can also try these out on
 a cloud-based VM such as Digital Ocean or build up the required VM using
 AWS/Azure. Later labs will use multiple VMs so cost could be an issue if
 you experiment with this on the cloud.</p>
+<h1 id="task-0-connect-to-p1153-night-class-only">Task 0: Connect to
+P1153 (night class only)</h1>
+<p>Make sure you are connected to a lab PC in P1153 for these
+instructions.</p>
+<p>Arrangements for this will be discussed during class time.</p>
 <h1 id="task-1-vm-creation">Task 1: VM creation</h1>
 <ol type="1">
 <li>Login to https://xoa.comp.dkit.ie/ using your DkIT username and
@@ -48,9 +52,28 @@ password.</li>
 <li>Make sure you see the <em>New VM</em> button. If not, you need to
 request permissions and wait for them to be granted.</li>
 <li>Click the <em>New VM</em> button.</li>
-<li><strong>TODO:</strong> COMPLETE INSTRUCTIONS AS PER INSTALLED XOA
-SETUP!</li>
 </ol>
+<h2 id="pool-selection">Pool selection</h2>
+<p>For Create a new VM on drop down <strong>Primary Pool (Full
+Access)</strong>.</p>
+<h2 id="info">Info</h2>
+<p>Template: Ubuntu Server Quick Instance</p>
+<p>Name: <code>D00000000_automation_vm</code></p>
+<p>Replace D00000000 with your own D number. The technical staff
+<strong>will delete</strong> VMs that are not named beginning with a
+student number.</p>
+<p>Put the name also in as the description.</p>
+<p>Move on to <em>Disks</em> section.</p>
+<h2 id="disks">Disks</h2>
+<p><strong>SR</strong> should be set to <strong>Quick Instance
+Storage</strong>.</p>
+<p>Name should be same as VM name,
+e.g. <code>D00000000_automation_vm</code>. The technical staff
+<strong>will delete</strong> VMs where disks are not named beginning
+with a student number.</p>
+<h2 id="create">Create</h2>
+<p>Finally hit the blue <strong>Create</strong> button at the
+bottom.</p>
 <h1 id="task-2-connect-to-vm">Task 2: Connect to VM</h1>
 <ol type="1">
 <li>In XOA look for the IP address of your instance. Note it down.</li>
@@ -61,10 +84,11 @@ SETUP!</li>
 <li>Confirm that you see the bash prompt.</li>
 </ol>
 <h1 id="task-3-transfer-public-key">Task 3: Transfer public key</h1>
-<p>We’re going to use your VM a lot. Instead of entering the password
-each time we’ll use a keypair instead to login. This will be an
-important feature later on when we use a keypair to remotely manage
-<em>other</em> linux and Windows hosts.</p>
+<p>We’re going to use your VM a lot, and sometimes via PowerShell
+scripts on your Windows PC. Instead of entering the password each time
+we’ll use a keypair instead to login. This will be an important feature
+later on when we use a keypair to remotely manage <em>other</em> linux
+and Windows hosts.</p>
 <p>In this section you will transfer the public key of your SSH keypair
 to it using SFTP. SFTP is a protocol with a number of implementations,
 including Graphical clients. The default client <code>sftp</code> is a
@@ -94,8 +118,8 @@ directory path.</li>
 <h1 id="task-4-connect-to-vm-using-public-key">Task 4: Connect to VM
 using public key</h1>
 <ol type="1">
-<li>In windows terminal run the command
-<code>ssh student@ip-address-here</code>.</li>
+<li>Open a <em>new</em> PowerShell window in Windows Terminal.</li>
+<li>Run the command <code>ssh student@ip-address-here</code>.</li>
 <li>You should go straight to the prompt without it asking for a server
 password.</li>
 <li>Stay connected and move on to the next task.</li>
@@ -111,8 +135,8 @@ the confirmation prompt.</li>
 <li>It will disconnect.</li>
 <li>Give it time to reboot and then re-connect.</li>
 </ol>
-<h1 id="task-6-clone-the-automation-code">Task 6: Clone the automation
-code</h1>
+<h1 id="task-6-clone-the-automation-code-to-your-vm">Task 6: Clone the
+automation code to your VM</h1>
 <ol type="1">
 <li>Ensure that you’re in your home directory. Run <code>cd</code> on
 its own to make to sure.</li>
@@ -127,7 +151,8 @@ folder now exists in your home folder.</li>
 address for logging commit activity. Let’s set them now.</p>
 <pre><code>git config --global user.name &quot;Your name here&quot;
 git config --global user.email &quot;D00000000@student.dkit.ie&quot;</code></pre>
-<h1 id="task-8-clone-your-lab-folder">Task 8: Clone your lab folder</h1>
+<h1 id="task-8-clone-your-lab-folder-to-your-vm">Task 8: Clone your lab
+folder to your VM</h1>
 <p>We’ll also <em>clone</em> your lab repository.</p>
 <h2 id="step-1-getting-the-remote-url">Step 1: Getting the remote
 URL</h2>
@@ -159,5 +184,19 @@ script</h1>
 <li>Install the required packages identified using the <code>apt</code>
 system.</li>
 </ol>
+<h1 id="task-10-commit-your-lab-work">Task 10: Commit your lab work</h1>
+<p>Change into your <code>automation_labs</code> folder and make a
+subdirectory called exactly <code>lab03</code> in there.</p>
+<p>To demonstrate that you’ve set up your VM, run the appropriate
+commands to do the following using shell redirection to produce the
+output text files given:</p>
+<ol type="1">
+<li>Disk space free to a file <code>df.txt</code>.</li>
+<li>Logged in user(s) to a file <code>who.txt</code>.</li>
+<li>Directory listing of your <code>~/.ssh</code> folder to
+<code>ssh.txt</code>.</li>
+</ol>
+<p><em>Hint:</em> the output file names are a clue for parts 1 and
+2.</p>
 </body>
 </html>
