@@ -93,7 +93,7 @@ Go back to your existing SSH session to the server.
 2. Use `cat ~/id_ed25519.pub >> authorized_keys` to *append* your public key to the list of authorized keys.
 
 
-# Task 4: Connect to VM using public key
+# Task 5: Connect to VM using public key
 
 1. Open a *new* PowerShell window in Windows Terminal.
 2. Run the command `ssh administrator@ip-address-here`. 
@@ -101,7 +101,7 @@ Go back to your existing SSH session to the server.
 4. Stay connected and move on to the next task.
 
 
-# Task 5: Software update
+# Task 6: Software update
 
 1. Run `sudo apt -y update` to update the package lists. The `-y` bypasses the confirmation prompt.
 2. Run `sudo apt -y upgrade` to upgrade packages that are out of date. As in the previous step the `-y`switch bypasses the confirmation prompt.
@@ -110,14 +110,14 @@ Go back to your existing SSH session to the server.
 5. Give it time to reboot and then re-connect.
 
 
-# Task 6: Clone the automation code to your VM
+# Task 7: Clone the automation code to your VM
 
 1. Ensure that you're in your home directory. Run `cd` on its own to make to sure.
 2. Use `git clone https://github.com/peadargrant/automation.git` to clone the automation folder.
 3. Use `ls` to confirm that the `automation` folder now exists in your home folder.
 
 
-# Task 7: Git config setup
+# Task 8: Git config setup
 
 As with Windows, Git needs to be configured with your name and e-mail address for logging commit activity.
 Let's set them now. 
@@ -126,7 +126,7 @@ Let's set them now.
 	git config --global user.email "D00000000@student.dkit.ie"
 
 
-# Task 8: Clone your lab folder to your VM
+# Task 9: Clone your lab folder to your VM
 
 We'll also *clone* your lab repository. 
 
@@ -148,7 +148,7 @@ You could look this up from GitLab but it's quicker to:
 4. If you list the directory using `ls` you should now see the `automation_labs` folder as well as `automation` folder.
 
 
-# Task 9: Run the VM check script
+# Task 10: Run the VM check script
 
 Just as with the local PC, I've given you a VM check script.
 
