@@ -57,7 +57,7 @@ Finally hit the blue **Create** button at the bottom.
 # Task 2: Connect to VM
 
 1. In XOA look for the IP address of your instance. Note it down. 
-2. In windows terminal run the command `ssh student@ip-address-here`. 
+2. In windows terminal run the command `ssh administrator@ip-address-here`. 
 3. Answer *yes* in response to the host key query.
 4. Use the standard password as given in class.
 5. Confirm that you see the bash prompt.
@@ -77,7 +77,7 @@ When using SFTP (or FTP, or any other file transfer utility) you are dealing in 
 It can be confusing in a command-line environment to keep track of where you are.
 Use the `pwd` and `lpwd` commands liberally if you are not sure!
 
-1. Without closing your SSH session from the last task, open a new tab in Windows terminal and run the command `sftp student@ip-address-here`.
+1. Without closing your SSH session from the last task, open a new tab in Windows terminal and run the command `sftp administrator@ip-address-here`.
 2. Use `pwd` to show the *remote* working directory path. 
 3. Use `cd .ssh` to enter into the remote server's `.ssh` directory.
 4. Use `lpwd` to display the *local* working directory path. 
@@ -89,7 +89,7 @@ Use the `pwd` and `lpwd` commands liberally if you are not sure!
 # Task 4: Connect to VM using public key
 
 1. Open a *new* PowerShell window in Windows Terminal.
-2. Run the command `ssh student@ip-address-here`. 
+2. Run the command `ssh administrator@ip-address-here`. 
 3. You should go straight to the prompt without it asking for a server password.
 4. Stay connected and move on to the next task.
 
