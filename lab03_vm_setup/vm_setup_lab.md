@@ -79,11 +79,18 @@ Use the `pwd` and `lpwd` commands liberally if you are not sure!
 
 1. Without closing your SSH session from the last task, open a new tab in Windows terminal and run the command `sftp administrator@ip-address-here`.
 2. Use `pwd` to show the *remote* working directory path. 
-3. Use `cd .ssh` to enter into the remote server's `.ssh` directory.
-4. Use `lpwd` to display the *local* working directory path. 
-5. Use `lcd .ssh` to enter into the local client's `.ssh` directory. 
-6. Transfer your public key using `put id_ed25519.pub`. Do *not* transfer `id_ed25519` (your private key!)
-7. Terminate the connection using `exit`.
+3. Use `lpwd` to display the *local* working directory path. 
+4. Use `lcd .ssh` to enter into the local client's `.ssh` directory. 
+5. Transfer your public key using `put id_ed25519.pub`. Do *not* transfer `id_ed25519` (your private key!)
+6. Terminate the connection using `exit`.
+
+
+# Task 4: Copy public key to authorized_keys
+
+Go back to your existing SSH session to the server.
+
+1. Use `cd ~/.ssh` to change into your SSH config folder.
+2. Use `cat ~/id_ed25519.pub >> authorized_keys` to *append* your public key to the list of authorized keys.
 
 
 # Task 4: Connect to VM using public key

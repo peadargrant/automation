@@ -105,8 +105,6 @@ in Windows terminal and run the command
 <code>sftp administrator@ip-address-here</code>.</li>
 <li>Use <code>pwd</code> to show the <em>remote</em> working directory
 path.</li>
-<li>Use <code>cd .ssh</code> to enter into the remote server’s
-<code>.ssh</code> directory.</li>
 <li>Use <code>lpwd</code> to display the <em>local</em> working
 directory path.</li>
 <li>Use <code>lcd .ssh</code> to enter into the local client’s
@@ -114,6 +112,15 @@ directory path.</li>
 <li>Transfer your public key using <code>put id_ed25519.pub</code>. Do
 <em>not</em> transfer <code>id_ed25519</code> (your private key!)</li>
 <li>Terminate the connection using <code>exit</code>.</li>
+</ol>
+<h1 id="task-4-copy-public-key-to-authorized_keys">Task 4: Copy public
+key to authorized_keys</h1>
+<p>Go back to your existing SSH session to the server.</p>
+<ol type="1">
+<li>Use <code>cd ~/.ssh</code> to change into your SSH config
+folder.</li>
+<li>Use <code>cat ~/id_ed25519.pub &gt;&gt; authorized_keys</code> to
+<em>append</em> your public key to the list of authorized keys.</li>
 </ol>
 <h1 id="task-4-connect-to-vm-using-public-key">Task 4: Connect to VM
 using public key</h1>
