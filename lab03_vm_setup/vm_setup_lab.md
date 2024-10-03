@@ -18,6 +18,8 @@ Make sure you are connected to a lab PC in P1153 for these instructions.
 
 Arrangements for this will be discussed during class time.
 
+For the purposes of these lab instructions, the lab PC will be the **local** machine, not your home machine.
+
 
 # Task 1: VM creation
 
