@@ -1,0 +1,25 @@
+digraph G {
+
+    rankdir=LR;
+
+    subgraph cluster_local {
+	label="Local machine";
+	lterminal [ label="Terminal" ];
+	lshell [ label="Local Shell" ];
+	lssh [label="ssh command" ];
+	lterminal -> lshell;
+	lshell -> lssh ; 
+    }
+
+    subgraph cluster_remote_windows {
+	label="Remote machine";
+	rsshd [label="sshd server" ];
+	rshell [ label="Shell" ];
+	rterminal [ label="Terminal on\nRemote Server" ];
+	rterminal -> rshell ;
+	rsshd -> rshell;
+    }
+
+    lssh -> rsshd;
+
+}

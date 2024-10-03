@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Basic remoting lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Basic remoting lab</h1>
+</header>
+<p>Today’s lab introduces the powerful concept of <em>remoting</em>
+where a script (or manual commands) on our “local” computer invokes
+commands on a remote computer.</p>
+<p>From previous module(s) you’re familiar with basic PowerShell CLI and
+scripting on Windows, as basic bash CLI and scripting on UNIX. We won’t
+be re-covering the basics of how to build scripts, but you should review
+previous notes and work from relevant modules.</p>
+<p>We’re going to work with a few simple commands to begin with on the
+remote side. For the most part these just read and display basic
+information and don’t make any changes.</p>
+<h1 id="task-1-setup-a-linux-target-vm">Task 1: Setup a Linux target
+VM</h1>
+<p>On XOA setup a machine running Ubuntu Linux Quick Instance on
+<code>Primary Pool (FUll Access)</code> . Make sure to follow naming
+rules.</p>
+<p>Once the machine has started up note its IP. Recommend that you put
+it in a PowerShell variable named <code>$LinuxServerIp</code>.</p>
+<p>Open a new tab in Windows Terminal and SSH to the Linux server</p>
+<pre><code>ssh administrator@$LinuxServerIp</code></pre>
+<h1 id="task-2-setup-a-windows-target-vm">Task 2: Setup a Windows target
+VM</h1>
+<p>On XOA setup a machine running Windows Server 2019 from Quick
+Instance on <code>Primary Pool (Full Access)</code> Make sure to follow
+naming rules.</p>
+<p>Once the machine has started up note its IP. Recommend that you put
+it in a PowerShell variable named <code>$WindowsServerIp</code>.</p>
+<p>Open an RDP session to the Windows Server. On it, run Windows
+PowerShell as administrator.</p>
+<h2 id="check-for-openssh-server">Check for OpenSSH server</h2>
+<p>Check if OpenSSH is installed already:</p>
+<pre><code>Get-WindowsCapability -Online | Where-Object Name -like &#39;OpenSSH*&#39;</code></pre>
+<p>Notice that the client is installed but the server is not.</p>
+<h2 id="install-openssh-server">Install OpenSSH server</h2>
+<p>To install openSSH server type</p>
+<pre><code>Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</code></pre>
+<p>This operation may take some time.</p>
+<h2 id="enable-service">Enable service</h2>
+<p>To enable the service to start on boot</p>
+<pre><code>Set-Service -Name sshd -StartupType &#39;Automatic&#39;</code></pre>
+<h2 id="start-service-now">Start service now</h2>
+<p>Enabling the service doesn’t start it immediately. Do this via:</p>
+<pre><code>Start-Service sshd</code></pre>
+<h2 id="test-ssh-is-running">Test SSH is running</h2>
+<p>As a basic check, we can see if the local computer is listening on
+the SSH port.</p>
+<pre><code>Test-NetConnection -Port 22 -ComputerName 127.0.0.1</code></pre>
+<p>The results should show <code>TcpTestSuceeded : True</code>.</p>
+<h2 id="test-ssh-from-lab-computer">Test SSH from lab computer</h2>
+<p>Get the IP address of your Windows machine.</p>
+<p>Log into your Windows Server machine over SSH from your lab PC
+using:</p>
+<pre><code>ssh Administrator@$WindowsServerIp</code></pre>
+<p>Answer host key prompt(s) and type password.</p>
+<p>Does this look like PowerShell to you? It’s actually the old Command
+Prompt shell.</p>
+<h2 id="running-powershell-on-windows-server">Running PowerShell on
+Windows Server</h2>
+<p>You can change to PowerShell by running <code>powershell</code>
+command.</p>
+<p>This means that when you <code>exit</code> from PowerShell you’ll be
+returned to the old command prompt. A second <code>exit</code> will
+terminate the SSH session. Leave the SSH session open fully in
+PowerShell for now.</p>
+<h2 id="change-default-shell">Change default Shell</h2>
+<p>On Windows you will notice that the default shell is the old Command
+Prompt. You can change this to PowerShell by setting the
+<code>DefaultShell</code> registry key on the VM:</p>
+<pre><code>New-ItemProperty -Path &quot;HKLM:\SOFTWARE\OpenSSH&quot; -Name DefaultShell -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -PropertyType String  -Force</code></pre>
+<p>Start a <em>new</em> SSH session to the Windows Server and note that
+it starts PowerShell by default.</p>
+<p>Assuming that this session opens successfully, close the previous
+session.</p>
+<p><strong>Important note:</strong> In general, any time that you make a
+change to SSH configuration (either system wide or your own user
+account), leave the existing session open and make sure that a newly
+open session works as expected. Otherwise you could lock yourself out of
+the machine completely.</p>
+<h1 id="task-3-invoking-remote-commands">Task 3: Invoking remote
+commands</h1>
+<p>Run the simple command <code>date</code> separately on both the Linux
+and Windows machines. We’re now going to try invoking this directly from
+our client machine.</p>
+<p>To invoke a command on a remote machine over SSH, we simply prefix
+add it to the end of the SSH command:</p>
+<pre><code>ssh administrator@$LinuxServerIp date
+ssh Administrator@$WindowsServerIp date</code></pre>
+<p>Note that:</p>
+<ol type="1">
+<li>the output is directly that which would be emitted from the
+command.</li>
+<li>we’re prompted for authentication each time (nuisance)</li>
+</ol>
+<h1 id="task-4-key-based-authentication">Task 4: Key-based
+authentication</h1>
+<p>Make sure that you have a working ED25519 key. If you followed the
+client setup you should have! If not sure, run</p>
+<pre><code>./test_key.ps1</code></pre>
+<h2 id="placing-public-key-on-linux-server">Placing public key on Linux
+Server</h2>
+<p>To put our public key on the Linux Server we’ll use SFTP to transfer
+the public key to the linux machine. We’ll then use some shell commands
+to append it to the list of authorized keys.</p>
+<h3 id="transferring-the-key">Transferring the key</h3>
+<p>Open an <em>SFTP</em> session using:</p>
+<pre><code>sftp administrator@$LinuxServerIp</code></pre>
+<p>SFTP is a command-line program with its own prompt. Although the
+commands in many cases are similar to the shell commands it is
+<em>NOT</em> a command shell.</p>
+<p>Change to your local .ssh folder</p>
+<pre><code>lcd ~/.ssh</code></pre>
+<p>Put the public key on to the remote server</p>
+<pre><code>put id_ed25519.pub</code></pre>
+<p>Do NOT put your Private key there!</p>
+<h3 id="appending-the-key-to-your-authorized-keys-list">Appending the
+key to your authorized keys list</h3>
+<p>On the open SSH session to the linux server, change into the SSH
+folder.</p>
+<pre><code>cd ~/.ssh</code></pre>
+<p>Append the key to the existing <code>authorized_keys</code> file:</p>
+<pre><code>cat ../id_ed25519.pub &gt;&gt; authorized_keys</code></pre>
+<p>Print out the authorized keys file to be sure:</p>
+<pre><code>cat authorized_keys</code></pre>
+<p>List out the folder in detail:</p>
+<pre><code>ls -lh</code></pre>
+<p>Make sure that the <code>authorized_keys</code> file has only one
+<code>rw</code> in the permissions list.</p>
+<h3 id="test-the-connection">Test the connection</h3>
+<p>Try opening a new SSH session to the linux machine. It should succeed
+<em>without</em> prompting for a password.</p>
+<h2 id="placing-public-key-on-windows-server">Placing public key on
+Windows Server</h2>
+<p>To put our public key on the Windows Server we’ll use SFTP to
+transfer the public key to the linux machine. We’ll then use some
+PowerShell commands to append it to the list of authorized keys.</p>
+<h3 id="transferring-the-key-1">Transferring the key</h3>
+<p>Open an <em>SFTP</em> session using:</p>
+<pre><code>sftp administrator@$WindowsServerIp</code></pre>
+<p>Change to your local .ssh folder</p>
+<pre><code>lcd ~/.ssh</code></pre>
+<p>Put the public key on to the remote server</p>
+<pre><code>put id_ed25519.pub</code></pre>
+<p>Do NOT put your Private key there!</p>
+<h3 id="appending-the-key-to-your-authorized-keys-list-1">Appending the
+key to your authorized keys list</h3>
+<p>On the open SSH session to the windows server, change into the
+central SSH folder.</p>
+<pre><code>cd C:\ProgramData\ssh</code></pre>
+<p>Put your key file in as the
+<code>administrators_authorized_keys</code> file:</p>
+<pre><code>mv ~/id_ed25519.pub administrators_authorized_keys</code></pre>
+<p>Print out the authorized keys file to be sure:</p>
+<pre><code>cat authorized_keys</code></pre>
+<h3 id="test-the-connection-1">Test the connection</h3>
+<p>Try opening a new SSH session to the windows machine. It should
+succeed <em>without</em> prompting for a password.</p>
+<h1 id="task-4-more-remote-commands">Task 4: More remote commands</h1>
+<p>Let’s return to the simple <code>date</code> command separately on
+both the Linux and Windows machines. As before, to invoke a command on a
+remote machine over SSH, we simply prefix add it to the end of the SSH
+command:</p>
+<pre><code>ssh administrator@$LinuxServerIp date
+ssh Administrator@$WindowsServerIp date</code></pre>
+<p>We’re no longer prompted for authentication each time!</p>
+<h1 id="task-5">Task 5:</h1>
+<p>Write a simple client script that uses the <code>ipconfig</code> and
+<code>ip -a</code> commands to return basic information from the two
+servers and present it.</p>
+<h1 id="submission">Submission</h1>
+<p>Put the following from this week in your <code>lab04</code> folder in
+your <code>automation_labs</code>:</p>
+<ul>
+<li>Windows Server <code>ipconfig</code> output
+<code>windows_ipconfig.txt</code> via remoting</li>
+<li>Linux server <code>ip a</code> output
+<code>linux_ipconfig.txt</code> via remoting</li>
+<li>PowerShell script from Task 5.</li>
+</ul>
+<p>Commit and push to GitLab.</p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+digraph G {
+
+    rankdir = LR;
+
+    subgraph cluster_home {
+	label="Home (night class)";
+	homepc [ label="Home PC" ];
+    }
+    
+    subgraph cluster_lab {
+	label="Lab";
+	client [ label="Client PC" ];
+    }
+
+    homepc -> client;
+
+    subgraph cluster_xoa {
+	label="XOA (aka Data Centre)";
+	linux [ label="Linux VM" ];
+	windows [ label="Windows VM" ];
+    }
+
+    client -> linux;
+    client -> windows;
+}
