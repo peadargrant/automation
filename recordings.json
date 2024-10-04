@@ -7,9 +7,19 @@
 	    "link": "https://media.heanet.ie/page/e6f3113ceb3b4836aa8af662177d79f7"
 	},
 	{
-		"title": "Client setup; Office automation",
-		"date": "2024-09-19",
-		"link": "https://media.heanet.ie/page/457fdf11c2b342359b4933ea0c9e0cb9"
+	    "title": "Client setup; Office automation",
+	    "date": "2024-09-19",
+	    "link": "https://media.heanet.ie/page/457fdf11c2b342359b4933ea0c9e0cb9"
+	},
+	{
+	    "title": "VM setup",
+	    "date": "2024-09-26",
+	    "link": "https://media.heanet.ie/page/111e7f56157a46a5b02d91f3df678bb9"
+	},
+	{
+	    "title": "Basic remoting",
+	    "date": "2024-10-03",
+	    "link": ""
 	}
     ]
 }
