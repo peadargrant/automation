@@ -1,0 +1,30 @@
+digraph G {
+
+    rankdir = LR;
+
+    subgraph cluster_home {
+	label="Home (night class)";
+	homepc [ shape="rectangle", label="Home PC" ];
+    }
+    
+    subgraph cluster_lab {
+	label="Lab (P1153)";
+	client [ shape="rectangle", label="Client PC" ];
+    }
+
+    homepc -> client;
+
+    subgraph cluster_xoa {
+	label="XOA (aka Data Centre)";
+	
+	control [ shape="rectangle", label="Control\nLinux VM" ];
+	linux [ shape="rectangle", label="Target\nLinux VM" ];
+	windows [ shape="rectangle", label="Target\nWindows VM" ];
+	
+    }
+
+    client -> control;
+    control -> linux;
+    control -> windows;
+
+}

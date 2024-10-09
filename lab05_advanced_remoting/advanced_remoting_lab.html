@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Advanced remoting lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Advanced remoting lab</h1>
+</header>
+<p><strong>Important note:</strong> these instructions in many places
+point you to look elsewhere. This is to emphasise that you should be
+learning by doing!</p>
+<h1 id="task-1-vm-setup">Task 1: VM setup</h1>
+<p>For today’s lab you will need on XOA:</p>
+<ol type="1">
+<li>One linux VM named <code>D????????_control</code>.
+<ul>
+<li>Use Ubuntu Server Quick Instance</li>
+</ul></li>
+<li>Another linux VM named <code>D????????_linux_target</code>.
+<ul>
+<li>Use Ubuntu Server Quick Instance</li>
+</ul></li>
+<li>A Windows Server VM named <code>D????????_windows_target</code>.
+<ul>
+<li>Use Windows Server 2019</li>
+</ul></li>
+</ol>
+<p>Note down the IP addresses of all machines somewhere on your Client
+PC, either in a text doc or shell variables.</p>
+<h1 id="task-2-ssh-server-setup-on-windows">Task 2: SSH server setup on
+Windows</h1>
+<p>Use the instructions from last week to add the OpenSSH.Server windows
+feature, enable it, start it, test connectivity.</p>
+<h1 id="task-3-ssh-connectivity">Task 3: SSH connectivity</h1>
+<p>Connect from your client PC to the control VM over SSH.</p>
+<p>Once connected, SSH to the Linux VM to confirm it works, then
+exit.</p>
+<p>Then SSH to the Windows VM to confirm that it too works, then
+exit.</p>
+<h1 id="task-3-key-setup">Task 3: Key setup</h1>
+<p>On the control server we’re going to generate an SSH KeyPair that
+will be used to connect to the targets.</p>
+<h2 id="key-creation">Key creation</h2>
+<p>Create a new ED25519 key following the same instructions as for
+Windows client in previous weeks.</p>
+<h2 id="copying-public-key">Copying public key</h2>
+<p>Use the instructions from previous labs to copy the public key to the
+correct locations on both the Linux and Windows target VMs.</p>
+<h2 id="confirm-that-key-works">Confirm that key works</h2>
+<p>From the control VM, SSH to the Linux VM to confirm that the SSH
+sessions starts without asking for a password, then exit.</p>
+<p>Similarly SSH from the control VM to the Windows VM to confirm that
+it too works, then exit.</p>
+<h1 id="task-4-bash-script">Task 4: Bash script</h1>
+<p>On the control VM use a text editor to write a Bash script called
+<code>monitor.sh</code> that does the following:</p>
+<ol type="1">
+<li><p>Opens a new file named <code>report.txt</code> in
+<code>/home/administrator</code></p></li>
+<li><p>Puts a header saying <code># System report</code>.</p></li>
+<li><p>Puts a line with the date (hint: use <code>date</code>
+command).</p></li>
+<li><p>Puts a header saying <code>## IP configuration:</code>.</p></li>
+<li><p>Shows the Linux and Windows IP configurations as reported by the
+relevant commands under <code>### Linux Target</code> and
+<code>### Windows Target</code>.</p></li>
+<li><p>Shows the disk usage under a header <code>## Disk usage</code>
+with the same sub-headings.</p></li>
+</ol>
+<p>Make the appropriate permission changes so that
+<code>monitor.sh</code> can be run directly.</p>
+<h1 id="task-5-cron-job">Task 5: Cron job</h1>
+<p>On the control VM open the administrator user’s crontab file by
+running</p>
+<pre><code>crontab -e</code></pre>
+<p>Insert a new line in the file to run the <code>monitor.sh</code> file
+every minute.</p>
+<p>Exit the text editor.</p>
+<p>Confirm by observing the <code>report.txt</code> file’s timestamp
+that the cron job has completed.</p>
+<p>Inspect the contents of the <code>report.txt</code> file.</p>
+</body>
+</html>
