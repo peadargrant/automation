@@ -1,0 +1,2 @@
+put setup.sh
+chmod 744 setup.sh
