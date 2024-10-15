@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>IRC Deployment Lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">IRC Deployment Lab</h1>
+</header>
+<p>This lab will be a bit harder than previous labs - you will not be
+given the commands needed if you’ve seen them before!</p>
+<p>This lab is a slight prelude to using automation more widely.
+Therefore we’re going to learn to script/automate certain steps.</p>
+<h1 id="task-1-vm-setup">Task 1: VM setup</h1>
+<p>We’re going to need one VM for today, running Linux.</p>
+<h2 id="linux-vm">Linux VM</h2>
+<p>Set up as Ubuntu Server Quick Instance. All defaults are OK. Note
+down its IP address in a file named <code>target.txt</code>.</p>
+<h1 id="task-2-ssh-key-setup">Task 2: SSH key setup</h1>
+<p>Ensure you’ve an ED25519 key pair set up on your machine. Check for a
+file named <code>~/.ssh/id_ed25519.pub</code>.</p>
+<p>Create it using <code>ssh-keygen -t ed25519</code> (without
+passphrase) if not.</p>
+<h1 id="task-3-ssh-key-transfer">Task 3: SSH key transfer</h1>
+<p>Last week we manually transferred and appended our SSH key to the VM.
+Repeat that again this week and make sure you can login without password
+being asked for.</p>
+<h1 id="task-4-software-installation">Task 4: Software installation</h1>
+<p>We’re going to use a script named <code>run_setup.ps1</code> on our
+lab desktop which will transfer some required files to the server, and
+will then run an installation script on the remote server.</p>
+<pre><code>./run_setup.ps1</code></pre>
+<h1 id="task-5-test-irc-works-on-localhost">Task 5: Test IRC works on
+localhost</h1>
+<p>Login over SSH. Launch <code>irssi</code> using the command:</p>
+<pre><code>irssi</code></pre>
+<p>This will open a full-screen application. IRC normally accepts
+commands in text form.</p>
+<h2 id="connect-to-local-server">Connect to local server</h2>
+<p>To connect to localhost, we type:</p>
+<pre><code>/CONNECT 127.0.0.1</code></pre>
+<p>If <code>ngircd</code> is working you should see a message that ends
+with <code>End of MOTD command</code> or similar.</p>
+<p>By default there is no authentication. (It can be setup on the server
+if needed.)</p>
+<h2 id="join-a-channel">Join a channel</h2>
+<p>Let’s now join a channel. IRC servers sometimes have channels pre
+setup on them. Just as with the loose authentication options, by default
+IRC servers permit any user to create a channel. Let’s do that now:</p>
+<pre><code>/JOIN #GENERAL</code></pre>
+<p>Note the hash tag before the channel name, just as used in modern
+social media.</p>
+<h1 id="task-7-tunneling-ssh">Task 7: Tunneling SSH</h1>
+<p>SSH has a <em>very</em> handy feature called
+<strong>Tunnelling</strong>.</p>
+<p>Tunnelling lets us open a port on our local machine and
+<em>forward</em> it to the remote machine (or any machine on the remote
+machine’s network). It’s almost like a mini VPN. Tunnelling can co-exist
+with a normal interactive login session.</p>
+<p>Open a new SSH session to your <code>lab-linux</code> machine
+using:</p>
+<pre><code>ssh -L6667:127.0.0.1:6667 student@linux-ip-address-here</code></pre>
+<p>The <code>-L</code> option opens port 6667 (the standard IRC port) on
+the local machine and forwards it to the remote machine, where it will
+send traffic to 127.0.0.1 (itself) on port 6667.</p>
+<h1 id="task-7-installing-irc-on-local-pc">Task 7: Installing IRC on
+local PC</h1>
+<p><a href="https://www.mirc.com/get.html">Install MIRC</a></p>
+<h2 id="configuration">Configuration</h2>
+<p>When it opens go to Server dropdown and click the button beside it,
+then Add.</p>
+<pre><code>Description: localhost
+Address: 127.0.0.1</code></pre>
+<p>Leave everything else alone and click <code>OK</code>.</p>
+<h2 id="connection">Connection</h2>
+<p>Drop down your new Server setting in the list. Put <code>lab</code>
+in the Nickname. Hit <code>Connect</code> .</p>
+<p>You should see a similar message in MIRC as you saw in
+<code>irssi</code>. Close the Favourites window that pops up.</p>
+<h2 id="joining-channel">Joining Channel</h2>
+<p>You can browse channels etc in the GUI but the same commands also
+work here. In the command box type</p>
+<pre><code>/JOIN #GENERAL</code></pre>
+<p>Look at your linux box and notice that it shows the <code>lab</code>
+user has joined.</p>
+<h2 id="try-out-chat">Try out chat</h2>
+<p>At this point you can type messages in the command window which will
+fill up in the chat just like WhatsApp / Teams etc.</p>
+<h1 id="submission">Submission</h1>
+<p>In your <code>lab06</code> folder include the following files:</p>
+<ul>
+<li><code>target_ip.txt</code></li>
+<li>screenshot <code>screenshot.png</code> or text copy
+<code>screenshot.png</code> of the login screen of your IRC server</li>
+</ul>
+<h1 id="delete-all-resources">Delete all resources</h1>
+<p>When you’ve finished the lab, delete all resources by deleting your
+resource group!</p>
+<p><strong>VERY IMPORTANT</strong> Delete all resources once you’re
+finished using them to save your Azure credits! You’re entirely
+responsible for managing your credits!</p>
+<p>Delete the lab resource group from the CLI using:</p>
+<pre><code>az group delete -n lab_rg</code></pre>
+<p>You should notice the RDP session (if open) terminates, the SSH
+connection(s) if open terminate(s). Once the command has finished then
+confirm that the resource group is gone in the Portal.</p>
+</body>
+</html>

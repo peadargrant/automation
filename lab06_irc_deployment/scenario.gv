@@ -1,0 +1,48 @@
+digraph G {
+
+    rankdir=LR;
+
+    subgraph cluster_lab {
+	label="Lab environment";
+
+	subgraph cluster_client {
+	    label="Client PC";
+
+	    desktop [ label="Desktop", shape=rectangle ];
+	    
+	powershell [ label="PowerShell", shape=rectangle, style=filled, fillcolor=lightblue ];
+	sshclient [ label="ssh\nSSH client", shape=rectangle, style=filled, fillcolor=lightblue ];
+	mirc [ label="MIRC\nIRC Client", shape=rectangle, style=filled, fillcolor=lightpink ];
+	desktop -> powershell ;
+	desktop -> mirc ; 
+	powershell -> sshclient ;
+	
+    }
+    
+}
+
+    
+    subgraph cluster_xoa {
+	label="XOA environment";
+	subgraph cluster_linux {
+	    label="Linux server";	  
+
+	    sshd [ label="sshd", shape=rectangle, style=filled, fillcolor=palegreen ];
+	    bash [ label="bash", shape=rectangle, style=filled, fillcolor=palegreen ];
+	    
+	    
+	    ngircd [ label="ngircd\nIRC server" , shape=rectangle, style=filled, fillcolor=lightyellow ];
+
+	    irssi [ label="irssi\nIRC client", shape=rectangle, style=filled, fillcolor=lightyellow ];
+
+	    sshd -> bash;
+	    bash -> irssi;
+	    irssi -> ngircd [label="IRC"];
+	}
+
+    }
+
+    sshclient -> sshd [label="SSH"];
+    mirc -> ngircd;
+    
+}
