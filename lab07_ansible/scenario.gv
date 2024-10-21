@@ -1,0 +1,33 @@
+digraph G {
+
+    rankdir=LR;
+
+    node [ shape="rectangle", style="filled" ];
+
+    subgraph cluster_home {
+	label="Home environment";
+
+	home_pc [ label="Home PC" ];
+    }
+    
+    subgraph cluster_lab {
+	label="Lab environment";
+
+	lab_pc [ label="Lab PC" ];
+    }
+    
+    subgraph cluster_xoa {
+	label="XOA Environment";
+
+	control_node [ label="Control node", fillcolor=lightblue ];
+
+	managed_node_1 [ label="Managed node 1\nLinux", fillcolor=lightpink];
+	managed_node_2 [ label="Managed node 2\nLinux", fillcolor=lightpink];	
+    }
+
+    home_pc -> lab_pc [label="RDP"];
+    lab_pc -> control_node [label="SSH"];
+    control_node -> managed_node_1 [label="SSH"];
+    control_node -> managed_node_2 [label="SSH"];
+    
+}

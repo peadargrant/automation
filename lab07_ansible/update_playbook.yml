@@ -1,0 +1,11 @@
+- name: standard software updates
+  hosts: managed
+  tasks:
+  - name: system update
+    apt:
+	upgrade: yes
+	update_cache: yes
+  - name: install packages
+    apt: name={{ item }} state=latest update_cache=true
+    loop: [htop, emacs-nox, irssi, tmux]
+    state: latest
