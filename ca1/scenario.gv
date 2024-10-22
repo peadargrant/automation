@@ -1,0 +1,68 @@
+digraph G {
+
+    rankdir=LR;
+
+    node [ shape=rectangle, style=filled];
+    
+    subgraph cluster_lab {
+	label="Lab environment";
+
+	subgraph cluster_labpc {
+	    label="Lab PC";
+	    labssh [ label="ssh" ];
+	    rdpc [ label="RDP client", fillcolor=lightcyan ];
+	}
+    }
+    
+    subgraph cluster_xoa {
+	label="XOA/Virtualisation/DC environment";
+
+	subgraph cluster_control {
+	    label="Control (control)";
+	    controlsshd [ label="sshd" ];
+	    controlssh [ label="ssh", fillcolor=palegreen ];
+	}
+	
+	subgraph cluster_server {
+	    label="Server (chat-server)";
+	    ngircd [ label="ngircd", fillcolor=lightyellow ];
+	    serversshd [ label="sshd", fillcolor=palegreen ];
+	    teambot [label="teambot", fillcolor=violet ];
+	}
+
+	subgraph cluster_linux_client {
+	    label="Linux client (linux-client)";
+	    xrdp [ label="XRDP server", fillcolor=lightcyan ];
+	    xfce [ label="XFCE desktop" ];
+	    irssi [ label="irssi", fillcolor=lightpink ];
+	    lhexchat [ label="hexchat", fillcolor=lightblue ];
+	    linuxsshd [ label="sshd", fillcolor=palegreen ];	    
+	}
+
+	subgraph cluster_windows_client {
+	    label="Windows client (windows-client)";
+	    wrdp [ label="RDP server", fillcolor=lightcyan ] ;
+	    whexchat [ label="hexchat", fillcolor=lightblue ];
+	    windowssshd [ label="sshd", fillcolor=palegreen ];
+	    wdesktop [ label="Windows desktop" ];
+	}
+
+	
+    }
+    irssi -> ngircd ; 
+	lhexchat -> ngircd;
+	whexchat -> ngircd;
+	controlssh -> serversshd;
+	controlssh -> linuxsshd;
+	controlssh -> windowssshd;
+	labssh -> controlsshd;
+	teambot -> ngircd;
+	xrdp -> xfce ;
+	xfce -> lhexchat;
+	rdpc -> wrdp;
+	rdpc -> xrdp;
+	linuxsshd -> irssi;
+	wrdp -> wdesktop;
+	wdesktop -> whexchat;
+	
+}
