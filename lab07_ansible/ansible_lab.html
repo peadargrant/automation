@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Ansible lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Ansible lab</h1>
+</header>
+<h1 id="task-1-vm-setup">Task 1: VM setup</h1>
+<p>Log into XOA.</p>
+<p>Set up the following <strong>3</strong> VMs all using the <em>Ubuntu
+Server Quick Instance</em>:</p>
+<ul>
+<li><code>D00000000_control</code></li>
+<li><code>D00000000_managed_1</code></li>
+<li><code>D00000000_managed_2</code></li>
+</ul>
+<h1 id="task-2-hostname-setup">Task 2: Hostname setup</h1>
+<p>Once all 3 machines have started up, log into each and configure the
+hostname.</p>
+<ul>
+<li><code>D00000000_control</code> named <code>control</code></li>
+<li><code>D00000000_managed_1</code> named <code>managed_1</code></li>
+<li><code>D00000000_managed_2</code> named <code>managed_2</code></li>
+</ul>
+<p>You can do this using the following command (example shows the one
+for control):</p>
+<pre><code>sudo hostnamectl hostname control</code></pre>
+<p>After doing this logout and back in again and confirm that the prompt
+correclty shows the hostname.</p>
+<h1 id="task-3-control-node-software-update">Task 3: Control node
+software update</h1>
+<p>The following command will do an apt update/upgrade on the control
+node and then reboot.</p>
+<pre><code>sudo NEEDRESTART_MODE=a apt -y update &amp;&amp; sudo NEEDRESTART_MODE=a apt -y upgrade &amp;&amp; sudo reboot</code></pre>
+<p>Once it reboots just reconnect to it.</p>
+<h1 id="task-3-control-node-key-setup">Task 3: Control node key
+setup</h1>
+<p>Make sure that you have an ED25519 SSH key pair on your lab PC.</p>
+<p>Use the instructions from previous weeks to transfer your public key
+to the control node and that you can login without a password.</p>
+<h1 id="task-4-managed-node-ssh-key-creation-compulsory">Task 4: Managed
+node SSH key creation (compulsory)</h1>
+<p>The ansible system realistically requires the control node to be able
+to access the managed nodes over SSH without requiring a password. We’ll
+setup a separate key/pair between the control node and the managed nodes
+to do this.</p>
+<p><strong>On the control node</strong> create a new key pair using</p>
+<pre><code>ssh-keygen -t ed25519</code></pre>
+<h1 id="task-5-copy-the-public-key-to-the-managed-nodes">Task 5: Copy
+the public key to the managed nodes</h1>
+<p>On the <strong>control node</strong>, copy the public key
+<code>id_ed25519</code> to both of the managed nodes using SFTP
+following previous instructions.</p>
+<p>On each of the managed nodes add the public key to the list of
+<code>authorized_keys</code> following previous instructions.</p>
+<p>Make sure that you can SSH from the control node to each of the
+managed nodes without a password being asked for. <em>Do not move on
+until this is working.</em></p>
+<h1 id="task-6-sudo-reconfiguration">Task 6: Sudo reconfiguration</h1>
+<p>By default <code>sudo</code> requires a password. Using
+<code>sudo</code> open the <code>/etc/sudoers</code> file:</p>
+<pre><code>sudo nano /etc/sudoers</code></pre>
+<p>Look for the line that says:</p>
+<pre><code>%sudo   ALL=(ALL:ALL) ALL</code></pre>
+<p>Change it to:</p>
+<pre><code>%sudo   ALL=(ALL:ALL) NOPASSWD: ALL</code></pre>
+<p>Save and exit. Confirm that <code>sudo</code> works correctly
+afterwards, e.g. using <code>date</code> or <code>ip a</code>.</p>
+<h1 id="task-6-install-ansible-on-control-node">Task 6: Install ansible
+on control node</h1>
+<p>Install <code>ansible</code> on the control node using the package
+manager.</p>
+<pre><code>sudo apt -y install ansible</code></pre>
+<h1 id="task-7-setup-ansible-inventory">Task 7: Setup ansible
+inventory</h1>
+<p>On the control node, let’s now set up our <em>inventory</em> by
+putting the IP addresses for both managed hosts into a file called
+<code>inventory.ini</code>. First we open the file</p>
+<pre><code>nano inventory.ini</code></pre>
+<p>And in the file we put the IP addresses of both managed hosts:</p>
+<pre><code>[managed]
+10.108.154.105
+10.108.156.198</code></pre>
+<h1 id="task-8-ad-hoc-command-execution">Task 8: Ad-hoc Command
+Execution</h1>
+<pre><code>ansible -i inventory.ini managed -a &quot;ip a&quot;</code></pre>
+<h1 id="task-9-simple-playbook">Task 9: Simple Playbook</h1>
+<p>Open the file <code>update_playbook.yml</code> in a text editor on
+your lab PC. Copy the contents to the clipboard.</p>
+<p>Create a new file called <code>update_playbook.yml</code> on the
+<code>control</code> node.</p>
+<pre><code>nano update_playbook.yml</code></pre>
+<p>Paste the contents into the new file and save. We’ll now run the
+playbook:</p>
+<pre><code>ansible-playbook -i inventory.ini update_playbook.yml</code></pre>
+<p>This could take a while, but you should see the task being queued for
+execution. When complete the command will return.</p>
+<p>When it completes, repeat the command. Look carefully at the
+<code>PLAY RECAP</code> - is it the same?</p>
+<h1 id="lab-submission">Lab submission</h1>
+<p>In <code>lab07</code> folder include the following files to show
+you’ve completed the lab:</p>
+<ul>
+<li><code>inventory.ini</code></li>
+<li>A playbook in <code>.yml</code> format that you used.</li>
+<li><code>ansible_output.txt</code> showing clearly ansible output from
+the hosts in the inventory file</li>
+</ul>
+</body>
+</html>
