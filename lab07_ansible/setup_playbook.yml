@@ -1,14 +1,22 @@
 - name: standard software updates
   hosts: managed
+  become: yes
   tasks:
   - name: system update
     apt:
       upgrade: yes
       update_cache: yes
   - name: install packages
-    apt: name={{ item }}
-    with_items:
-      htop
-      emacs-nox
-      irssi
-      tmux
+    apt:
+      name:
+      - htop
+      - emacs-nox
+      - irssi
+      - tmux
+  - name: create tester user
+    ansible.builtin.user:
+      name: tester
+      shell: /bin/bash
+      groups: sudo
+      append: yes
+      create_home: yes

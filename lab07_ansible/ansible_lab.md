@@ -66,7 +66,7 @@ Make sure that you can SSH from the control node to each of the managed nodes wi
 # Task 6: Sudo reconfiguration
 
 By default `sudo` requires a password.
-Using `sudo` open the `/etc/sudoers` file:
+On each of the managed nodes, using `sudo` open the `/etc/sudoers` file:
 
 	sudo nano /etc/sudoers
 	
@@ -110,17 +110,17 @@ And in the file we put the IP addresses of both managed hosts:
 
 # Task 9: Simple Playbook
 
-Open the file `update_playbook.yml` in a text editor on your lab PC.
+Open the file `setup_playbook.yml` in a text editor on your lab PC.
 Copy the contents to the clipboard.
 
-Create a new file called `update_playbook.yml` on the `control` node.
+Create a new file called `setup_playbook.yml` on the `control` node.
 
-	nano update_playbook.yml
+	nano setup_playbook.yml
 	
 Paste the contents into the new file and save.
 We'll now run the playbook:
 
-	ansible-playbook -i inventory.ini update_playbook.yml
+	ansible-playbook -i inventory.ini setup_playbook.yml
 	
 This could take a while, but you should see the task being queued for execution.
 When complete the command will return.

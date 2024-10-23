@@ -80,8 +80,9 @@ following previous instructions.</p>
 managed nodes without a password being asked for. <em>Do not move on
 until this is working.</em></p>
 <h1 id="task-6-sudo-reconfiguration">Task 6: Sudo reconfiguration</h1>
-<p>By default <code>sudo</code> requires a password. Using
-<code>sudo</code> open the <code>/etc/sudoers</code> file:</p>
+<p>By default <code>sudo</code> requires a password. On each of the
+managed nodes, using <code>sudo</code> open the
+<code>/etc/sudoers</code> file:</p>
 <pre><code>sudo nano /etc/sudoers</code></pre>
 <p>Look for the line that says:</p>
 <pre><code>%sudo   ALL=(ALL:ALL) ALL</code></pre>
@@ -108,14 +109,14 @@ putting the IP addresses for both managed hosts into a file called
 Execution</h1>
 <pre><code>ansible -i inventory.ini managed -a &quot;ip a&quot;</code></pre>
 <h1 id="task-9-simple-playbook">Task 9: Simple Playbook</h1>
-<p>Open the file <code>update_playbook.yml</code> in a text editor on
+<p>Open the file <code>setup_playbook.yml</code> in a text editor on
 your lab PC. Copy the contents to the clipboard.</p>
-<p>Create a new file called <code>update_playbook.yml</code> on the
+<p>Create a new file called <code>setup_playbook.yml</code> on the
 <code>control</code> node.</p>
-<pre><code>nano update_playbook.yml</code></pre>
+<pre><code>nano setup_playbook.yml</code></pre>
 <p>Paste the contents into the new file and save. We’ll now run the
 playbook:</p>
-<pre><code>ansible-playbook -i inventory.ini update_playbook.yml</code></pre>
+<pre><code>ansible-playbook -i inventory.ini setup_playbook.yml</code></pre>
 <p>This could take a while, but you should see the task being queued for
 execution. When complete the command will return.</p>
 <p>When it completes, repeat the command. Look carefully at the
