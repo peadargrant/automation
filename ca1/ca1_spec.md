@@ -2,7 +2,7 @@
 
 **Weight:** 30%
 
-**Deadline:** Mon 04 Nov 09:00
+**Deadline:** Tue 12 Nov 09:00
 
 **Description:**
 Assignment demonstrating understanding of principles and approaches to automation
@@ -10,14 +10,18 @@ Assignment demonstrating understanding of principles and approaches to automatio
 # Scenario
 
 A software development team is debating whether slack, Teams or IRC should be the default communication channel for staff:
+
 - The chat system will be used for general person-group communication.
 - It will also serve as a conduit for notifications from system monitoring, data centre alerts and build alerts from the CI system.
+
 You have been tasked with prototyping the IRC system, and have been asked to create the appropriate ansible playbook and supporting scripts.
 
 Technical requirements:
-- Must be shown to work on Linux (Ubuntu Server) in both text console (`irssi`) and GUI (`hexchat`) forms.
-  - The XFCE desktop will be installed on linux. 
-  - XRDP will be installed to permit RDP access to the desktop for each user.
+
+- Must be shown to work on Linux (Ubuntu Server) in both text console (`irssi`) and optionally GUI (`hexchat`) forms.
+  - Text-mode `irssi` client is required.
+  - The XFCE desktop can be installed on linux optionally.
+  - If so, XRDP will be installed to permit RDP access to the desktop for each user.
 - Windows will be Windows Server 2019.
   - Client will be `hexchat` and should be installed for all users.
   - RDP will be enabled.

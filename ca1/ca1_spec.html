@@ -29,27 +29,41 @@
 <h1 class="title">Automation CA1 specification</h1>
 </header>
 <p><strong>Weight:</strong> 30%</p>
-<p><strong>Deadline:</strong> Mon 04 Nov 09:00</p>
+<p><strong>Deadline:</strong> Tue 12 Nov 09:00</p>
 <p><strong>Description:</strong> Assignment demonstrating understanding
 of principles and approaches to automation</p>
 <h1 id="scenario">Scenario</h1>
 <p>A software development team is debating whether slack, Teams or IRC
-should be the default communication channel for staff: - The chat system
-will be used for general person-group communication. - It will also
-serve as a conduit for notifications from system monitoring, data centre
-alerts and build alerts from the CI system. You have been tasked with
-prototyping the IRC system, and have been asked to create the
-appropriate ansible playbook and supporting scripts.</p>
-<p>Technical requirements: - Must be shown to work on Linux (Ubuntu
-Server) in both text console (<code>irssi</code>) and GUI
-(<code>hexchat</code>) forms. - The XFCE desktop will be installed on
-linux. - XRDP will be installed to permit RDP access to the desktop for
-each user. - Windows will be Windows Server 2019. - Client will be
-<code>hexchat</code> and should be installed for all users. - RDP will
-be enabled. - For demo purposes all machines shall have 3 user accounts
-created: <code>alice</code>, <code>bob</code> and <code>mary</code>. All
-accounts shall have <code>1Password</code> as the password. - If
-necessary you can / should tunnel RDP using SSH tunnel.</p>
+should be the default communication channel for staff:</p>
+<ul>
+<li>The chat system will be used for general person-group
+communication.</li>
+<li>It will also serve as a conduit for notifications from system
+monitoring, data centre alerts and build alerts from the CI system.</li>
+</ul>
+<p>You have been tasked with prototyping the IRC system, and have been
+asked to create the appropriate ansible playbook and supporting
+scripts.</p>
+<p>Technical requirements:</p>
+<ul>
+<li>Must be shown to work on Linux (Ubuntu Server) in both text console
+(<code>irssi</code>) and GUI (<code>hexchat</code>) forms.
+<ul>
+<li>The XFCE desktop will be installed on linux.</li>
+<li>XRDP will be installed to permit RDP access to the desktop for each
+user.</li>
+</ul></li>
+<li>Windows will be Windows Server 2019.
+<ul>
+<li>Client will be <code>hexchat</code> and should be installed for all
+users.</li>
+<li>RDP will be enabled.</li>
+</ul></li>
+<li>For demo purposes all machines shall have 3 user accounts created:
+<code>alice</code>, <code>bob</code> and <code>mary</code>. All accounts
+shall have <code>1Password</code> as the password.</li>
+<li>If necessary you can / should tunnel RDP using SSH tunnel.</li>
+</ul>
 <h1 id="requirements">Requirements</h1>
 <p>It is expected that submitted files will be free of syntax and basic
 formatting errors, such that they will run, even if the actions they
