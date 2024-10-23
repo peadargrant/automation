@@ -16,6 +16,8 @@ A software development team is debating whether slack, Teams or IRC should be th
 
 You have been tasked with prototyping the IRC system, and have been asked to create the appropriate ansible playbook and supporting scripts.
 
+[System diagram](scenario.pdf)
+
 Technical requirements:
 
 - Must be shown to work on Linux (Ubuntu Server) in both text console (`irssi`) and optionally GUI (`hexchat`) forms.
