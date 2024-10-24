@@ -28,8 +28,13 @@
 	},
 	{
 	    "title": "IRC deployment",
-	    "date": "2024-10-10",
+	    "date": "2024-10-17",
 	    "link": "https://media.heanet.ie/page/51122804100c444188a1ac146e9dbc44"
+	},
+	{
+	    "title": "Ansible, CA1",
+	    "date": "2024-10-24",
+	    "link": "https://media.heanet.ie/page/d825b1f5b3334acdb22c9c05fda51d99"
 	}
     ]
 }
