@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HDip Automation CA1 specification</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">HDip Automation CA1 specification</h1>
+</header>
+<p><strong>Weight:</strong> 30%</p>
+<p><strong>Deadline:</strong> Tue 12 Nov 09:00</p>
+<p><strong>Description:</strong> Assignment demonstrating understanding
+of principles and approaches to automation</p>
+<h1 id="scenario">Scenario</h1>
+<p>You are to deploy a system of your choice using Ansible. There must
+be at least the control server and 3 other hosts (the configuration on
+which may be very similar!)</p>
+<p>Ideas:</p>
+<ul>
+<li>Basic local provisioning (users, groups) etc.</li>
+<li>Attempt .MSI installation files on Windows</li>
+<li>IRC client and server</li>
+<li>Samba / SMB (client, server, drive mapping)</li>
+<li>NFS setup (client and server)</li>
+<li>Web server</li>
+<li>Desktop (xfce, xrdp)</li>
+</ul>
+<p>Machines may be Windows and/or Linux.</p>
+<h1 id="requirements">Requirements</h1>
+<p>It is expected that submitted files will be free of syntax and basic
+formatting errors, such that they will run, even if the actions they
+take are incorrect. Submitted files that contain errors that prevent
+them running (e.g. syntax errors) will be treated as not submitted and
+will receive zero.</p>
+<h2 id="vm-setup-15">VM setup (15%)</h2>
+<p>VMs for this exercise may be set up in the XOA system in DkIT or on
+resource of your own.</p>
+<p>The VMs must remain set up until you are told that they can be
+deleted.</p>
+<p>Modify the Linux VM configuration such that <code>sudo</code> does
+<em>not</em> require a password.</p>
+<h2 id="automation-ssh-key-setup-15">Automation SSH key setup (15%)</h2>
+<p>On the control host set up an ssh keypair and transfer the public key
+to the managed hosts such that <code>administrator</code> (or similar
+account) can log into all hosts without a password.</p>
+<h2 id="ansible-inventory-10">Ansible inventory (10%)</h2>
+<p>On the control host, create your inventory file for the 3 managed
+hosts. The inventory file should be submitted as
+<code>inventory.ini</code>.</p>
+<h2 id="ansible-playbook-40">Ansible playbook (40%)</h2>
+<p>Your ansible playbook in <code>setup_playbook.yml</code> should
+implement as much of the desired functionality as possible.</p>
+<p>You should develop this iteratively, bearing in mind that a
+well-designed playbook will be idempotent.</p>
+<h2 id="non-automatable-10">Non-automatable (10%)</h2>
+<p>Items that you could not automate should be listed in a file named
+<code>non_automatable.txt</code>. Each should have a reason why.</p>
+<h2 id="instructions-10">Instructions (10%)</h2>
+<p>Write a brief set of instructions named <code>instructions.txt</code>
+that incorporate running the playbook(s), and describe how
+non-automatable steps should be performed.</p>
+<p>You should briefly include instructions for testing.</p>
+<h1 id="submission">Submission</h1>
+<p>Submissions will be collected automatically after the submission
+date. Assuming that you have:</p>
+<ol type="1">
+<li>Set up the GitLab <code>automation_labs</code> folder.</li>
+<li>Created a subfolder called <code>ca1</code>.</li>
+<li>Supplied all files required from the instructions above.</li>
+<li>Committed and pushed your CA1 work before the deadline.</li>
+</ol>
+<p>You can deem it submitted. If you wish you can check with me in
+class.</p>
+<h1 id="demonstration">Demonstration</h1>
+<p>Verification demonstration will be required during lab time. No
+presentation will be required. Students who do not attend for
+demonstration will receive zero.</p>
+<h1 id="feedback">Feedback</h1>
+<p>Summary feedback will be provided via Moodle and/or GitLab.</p>
+<h1 id="qa">Q&amp;A</h1>
+<p><em>Q&amp;A will go here.</em></p>
+</body>
+</html>
