@@ -1,0 +1,13 @@
+- name: target (windows) hosts
+  hosts: windows
+  tasks:
+  - name: Create local group to contain new users
+    win_group:
+      name: testers
+      description: Allow access to tester staff
+  - name: Run an executable using win_command
+    win_shell: |
+      date | Out-File "C:\Users\Administrator\Desktop\done.txt"
+    
+
+

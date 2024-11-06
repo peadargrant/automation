@@ -1,0 +1,16 @@
+- name: control host setup playbook
+  hosts: local
+  become: yes
+  tasks:
+  - name: system update
+    apt:
+      upgrade: yes
+      update_cache: yes
+  - name: Package installation
+    apt:
+      name:
+      - emacs-nox
+      - elpa-yaml-mode
+      - tmux
+      - python-is-python3
+      state: present
