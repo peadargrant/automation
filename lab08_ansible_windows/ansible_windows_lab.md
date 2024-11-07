@@ -107,3 +107,10 @@ Create a file named `target_inventory.ini` on the control host, following the pa
 On the control host run the playbook against the target node:
 
 	
+# Lab submission
+
+In `lab08` submit evidence that you have run the playbooks in form of:
+
+	target_playbook.yml (with changes if any)
+	target_inventory.ini
+	output.txt (copied text screen output)

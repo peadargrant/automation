@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Ansible Windows lab</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../lab.css" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ansible Windows lab</h1>
+</div>
+<p>Useful information:</p>
+<ul>
+<li><a href="https://docs.ansible.com/ansible/latest/os_guide/index.html">Ansible on Windows and BSD</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/os_guide/windows_usage.html">See windows usage in manual</a></li>
+</ul>
+<h1 id="task-1-vm-setup">Task 1: VM setup</h1>
+<p>We will need 2 VMs for this lab.</p>
+<h2 id="control-node-linux-vm">Control node (Linux VM)</h2>
+<p>Control VM as follows:</p>
+<ul>
+<li>Ubuntu Server Quick Instance</li>
+</ul>
+<h2 id="target-node-windows-vm">Target node (Windows VM)</h2>
+<ul>
+<li>Windows Server 2019 Quick Instance</li>
+</ul>
+<p>It may be easier to use SSH and/or RDP rather than the emulated console to work with the Windows VM</p>
+<ul>
+<li>Remote desktop turned on (optional)</li>
+<li>OpenSSH server installed and working (optional):</li>
+</ul>
+<p>Commands to enable OpenSSH server are:</p>
+<pre><code>Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+Start-Service sshd
+Set-Service -Name sshd -StartupType &#39;automatic&#39;</code></pre>
+<h1 id="task-2-control-node-setup">Task 2: Control node setup</h1>
+<p>Use SFTP to copy the following files to the control node (or copy and paste them):</p>
+<pre><code>control_inventory.ini
+control_playbook.yml
+target_playbook.yml</code></pre>
+<p>Install ansible on the control node</p>
+<pre><code>sudo apt -y install ansible</code></pre>
+<p>Run the playbook against the control node:</p>
+<pre><code>ansible-playbook -i control_inventory.ini control_playbook.yml</code></pre>
+<p>Manually reboot the control node and re-connect when it comes back up.</p>
+<h1 id="task-3-winrm">Task 3: WinRM</h1>
+<p>On the Windows host (target node), check that WinRM is listening by running:</p>
+<pre><code>winrm enumerate winrm/config/Listener</code></pre>
+<p>Configure it by running:</p>
+<pre><code>winrm quickconfig</code></pre>
+<p>The default(s) are OK.</p>
+<h1 id="task-4-test-winrm-loopback">Task 4: Test WinRM loopback</h1>
+<p>WinRM definitely won't work remotely if it won't work from the same machine. Try the following command over WinRM to test it (change the password for Administrator if different):</p>
+<pre><code>winrs -r:http://127.0.0.1:5985/wsman -u:Administrator -p:1Password ipconfig</code></pre>
+<p>It should return the exact same output as if you did it locally.</p>
+<h1 id="task-5-setup-winrm-for-remote-access">Task 5: Setup WinRM for remote access</h1>
+<p>In this section we'll make some basic configuration changes to allow WinRM to accept remote connections.</p>
+<h2 id="enable-basic-authentication">Enable basic authentication</h2>
+<p>Basic authentication is disabled by default for security reasons. It's useful for testing, development and learning purposes as it requires little-to-no configuration. We'll switch it on here:</p>
+<pre><code>Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $True</code></pre>
+<h2 id="allow-unencrypted-connections">Allow unencrypted connections</h2>
+<p>Likewise, WinRM restricts unencrypted connections for security purposes. While this is a good idea on production systems, unencrypted connections are easier to configure for testing, development and learning purposes. They don't require certificate setup and configuration (which could be an entire lab in itself!)</p>
+<p>We'll allow unencrypted connections by running:</p>
+<pre><code>Set-Item -Path WSMan:\localhost\Service\AllowUnencrypted -Value $True</code></pre>
+<h1 id="task-6-inventory">Task 6: Inventory</h1>
+<p>Create a file named <code>target_inventory.ini</code> on the control host, following the pattern of the sample file.</p>
+<h1 id="task-7-playbook-run">Task 7: Playbook run</h1>
+<p>On the control host run the playbook against the target node:</p>
+<h1 id="lab-submission">Lab submission</h1>
+<p>In <code>lab08</code> submit evidence that you have run the playbooks in form of:</p>
+<pre><code>target_playbook.yml (with changes if any)
+target_inventory.ini
+output.txt (copied text screen output)</code></pre>
+</body>
+</html>

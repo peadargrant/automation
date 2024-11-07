@@ -1,6 +1,16 @@
 - name: target (windows) hosts
   hosts: windows
   tasks:
+    
+  - name: set hostname
+    ansible.windows.win_hostname:
+      name: target
+    register: res
+
+  - name: reboot after hostname change
+    ansible.windows.win_reboot:
+    when: res.reboot_required
+
   - name: developers group
     win_group:
       name: developers
@@ -42,7 +52,3 @@
       reorganize: true
       state: absent    
 
-#  - name: Install OpenSSH server
-#    win_feature:
-#      name: OpenSSH.Server
-#      state: present

@@ -6,23 +6,24 @@ digraph G {
 	
 	subgraph cluster_xoa {
 		label="XOA";
-		control [ label="control\nnode\n(Linux)" ];
-		target [ label="target\nnode\n(Windows)" ];
-		control -> target [xlabel="Ansible via WinRM"];
+		control [ label="control\nnode\n(Linux)", fillcolor=lightpink ];
+		target [ label="target\nnode\n(Windows)" , fillcolor=lightblue];
+		control -> target [label="Ansible via WinRM"];
+		control -> control [label="Local connection"];
 	}
 
 	subgraph cluster_lab {
 		label="Lab";
-		labpc [ label="Lab PC" ];
+		labpc [ label="Lab PC", fillcolor=palegreen ];
 	}
 	
-	labpc -> control [xlabel="SSH"];
+	labpc -> control [label="SSH"];
 	
 	subgraph cluster_home {
 		label="Home";
 		homepc [ label="Home PC"];
 		}
 		
-	homepc -> labpc [xlabel="RDP via VPN"]; 
+	homepc -> labpc [label="RDP via VPN"]; 
 
 }
