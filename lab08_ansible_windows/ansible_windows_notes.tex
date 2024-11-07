@@ -35,8 +35,31 @@ From ansible guide:
 
 \end{enumerate}
 
+\section{Complications}
 
+Although Ansible is somewhat \textit{cross-platform} there are some \textbf{specific issues} with Windows:
 
+\begin{enumerate}
+
+\item \textbf{Control node} must be running on \textbf{Linux}.
+
+\begin{itemize}
+\item Some experiemental support for Windows control nodes but in general it won't work.
+\end{itemize}
+
+\item \textbf{Different modules} for same tasks
+
+\begin{itemize}
+\item Things like user account creation that in theory are the same on both need different modules on Windows.
+\item Playbooks aren't directly portable across Windows / Linux.
+\end{itemize}
+
+\item \textbf{WinRM} must be setup at a basic level.
+
+\begin{itemize}
+\item Ansible uses WinRM on Windows (rather than SSH) as transport.
+\item WinRM can be confusing to setup securely!
+\end{itemize}
 
 \end{document}
 

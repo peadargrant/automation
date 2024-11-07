@@ -1,0 +1,28 @@
+digraph G {
+
+	rankdir=LR;
+
+	node [shape="rectangle", style="filled" ];
+	
+	subgraph cluster_xoa {
+		label="XOA";
+		control [ label="control\nnode\n(Linux)" ];
+		target [ label="target\nnode\n(Windows)" ];
+		control -> target [xlabel="Ansible via WinRM"];
+	}
+
+	subgraph cluster_lab {
+		label="Lab";
+		labpc [ label="Lab PC" ];
+	}
+	
+	labpc -> control [xlabel="SSH"];
+	
+	subgraph cluster_home {
+		label="Home";
+		homepc [ label="Home PC"];
+		}
+		
+	homepc -> labpc [xlabel="RDP via VPN"]; 
+
+}

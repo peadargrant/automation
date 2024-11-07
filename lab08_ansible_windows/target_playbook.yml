@@ -1,13 +1,48 @@
 - name: target (windows) hosts
   hosts: windows
   tasks:
-  - name: Create local group to contain new users
+  - name: developers group
     win_group:
-      name: testers
-      description: Allow access to tester staff
-  - name: Run an executable using win_command
-    win_shell: |
-      date | Out-File "C:\Users\Administrator\Desktop\done.txt"
-    
+      name: developers
+      description: software developers
 
+  - name: Create local user accounts
+    ansible.windows.win_user:
+      name: "{{ item.name }}"
+      password: 1Password
+      state: present
+      groups:
+        - Users
+        - developers
+    loop:
+      - name: alice
+      - name: bob
+      - name: mary
+      
+#  - name: Run an arbitary command
+#    win_shell: |
+#      date | Out-File "C:\Users\Administrator\Desktop\done.txt"
+      
+  - name: Create development folder
+    win_file:
+      path: C:\development
+      state: directory
 
+  - name: Set ACL of development folder
+    win_acl:
+      path: C:\development
+      rights: FullControl
+      state: present
+      type: allow
+      user: developers
+
+  - name: Remove parent inheritance of development folder
+    win_acl_inheritance:
+      path: C:\development
+      reorganize: true
+      state: absent    
+
+#  - name: Install OpenSSH server
+#    win_feature:
+#      name: OpenSSH.Server
+#      state: present
