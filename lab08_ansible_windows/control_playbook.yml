@@ -6,7 +6,7 @@
     apt:
       upgrade: yes
       update_cache: yes
-  - name: Package installation
+  - name: package installation
     apt:
       name:
       - emacs-nox
@@ -14,3 +14,6 @@
       - tmux
       - python-is-python3
       state: present
+  - name: set control node hostname
+    ansible.builtin.hostname:
+      name: control
