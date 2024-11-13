@@ -46,7 +46,8 @@ Install ansible on the control node
 
 Run the playbook against the control node:
 
-	ansible-playbook -i control_inventory.ini control_playbook.yml
+	ansible-playbook -i control_inventory.ini control_playbook.yml  --ask-become
+-pass
 
 Manually reboot the control node and re-connect when it comes back up. 
 

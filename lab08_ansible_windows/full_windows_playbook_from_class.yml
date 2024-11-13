@@ -1,0 +1,71 @@
+- name: target (windows) hosts
+  hosts: windows
+  tasks:
+    
+  - name: set hostname
+    ansible.windows.win_hostname:
+      name: target
+    register: res
+
+  - name: reboot after hostname change
+    ansible.windows.win_reboot:
+    when: res.reboot_required
+
+  - name: developers group
+    win_group:
+      name: developers
+      description: software developers
+
+  - name: Create local user accounts
+    ansible.windows.win_user:
+      name: "{{ item.name }}"
+      password: 1Password
+      state: present
+      groups:
+        - Users
+        - developers
+    loop:
+      - name: alice
+      - name: bob
+      - name: mary
+      
+#  - name: Run an arbitary command
+#    win_shell: |
+#      date | Out-File "C:\Users\Administrator\Desktop\done.txt"
+      
+  - name: Create development folder
+    win_file:
+      path: C:\development
+      state: directory
+
+  - name: Set ACL of development folder
+    win_acl:
+      path: C:\development
+      rights: FullControl
+      state: present
+      type: allow
+      user: developers
+
+  - name: Remove parent inheritance of development folder
+    win_acl_inheritance:
+      path: C:\development
+      reorganize: true
+      state: absent    
+
+  - name: Create temp folder for download
+    win_file:
+      path: C:\temp
+      state: directory
+
+  - name: copy the chrome installer
+    win_copy:
+      src: chrome.msi
+      dest: C:\temp\chrome.msi
+
+  - name: install chrome
+    win_package:
+      path: C:\temp\chrome.msi
+      state: present
+
+
+
