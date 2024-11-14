@@ -1,0 +1,6 @@
+- name: check for proper response
+  wait_for:
+    port: 80
+    timeout: 300
+    state: present
+    search_regex: "Hello World"

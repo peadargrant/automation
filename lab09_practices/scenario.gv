@@ -1,0 +1,33 @@
+digraph G {
+	rankdir=LR;
+
+node[ style=filled, shape=rectangle ];
+
+subgraph cluster_dc {
+	label="Data Centre (XOA)";
+
+control [ label="control", fillcolor=lightpink ];
+
+wct [ label="windows-client-target", fillcolor=lightblue ];
+
+lct [ label="linux-client-target", fillcolor=palegreen]
+}
+
+subgraph cluster_lab {
+	label="Lab";
+
+	pc [ label="lab-pc", fillcolor=lightyellow ];
+}
+
+subgraph cluster_home {
+	label="Home";
+	homepc [ label="home-pc", fillcolor=lightyellow ];
+}
+
+homepc -> pc;
+pc -> control;
+control -> wct;
+control -> lct;
+
+}
+
