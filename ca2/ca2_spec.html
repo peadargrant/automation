@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Automation CA2 specification</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Automation CA2 specification</h1>
+</header>
+<p><strong>Deadline:</strong> to be confirmed</p>
+<h1 id="requirements">Requirements</h1>
+<p>You are to construct an automation of your choice for either system
+setup, administration or deployment purposes. You can use CA1 as a basis
+for starting this CA but you must discuss this with me first.</p>
+<h2 id="problem-description.-10">Problem description. (10%)</h2>
+<p>What do you aim to do, and why?</p>
+<p>Should be in a file called <code>description.txt</code>.</p>
+<p>Make sure to explain the node(s) involved and their relationships to
+each other.</p>
+<h2 id="planned-approach-10">Planned approach (10%)</h2>
+<p>Explain how you’re going to automate, focusing on what cannot easily
+be automated, or other scripts / tools that you will employ.</p>
+<p>Should be in a file called <code>planned_approach.txt</code>.</p>
+<p>Make sure to explain if you’re going to use a script to drive the
+automation itself (e.g. a PS or bash script that calls the ansible
+playbook).</p>
+<h2 id="ansible-playbooks-40">Ansible playbooks (40%)</h2>
+<p>Provide suitable ansible playbooks to perform your automation
+steps.</p>
+<p>Syntax, clarity, descriptive naming, commenting etc.</p>
+<p>Consider using loops, and external data sources (e.g. csv files) as
+required.</p>
+<h2 id="ancillary-scripts-20">Ancillary scripts (20%)</h2>
+<p>Provide a scripts that will run the playbooks as required for each
+different task / scenario that you have.</p>
+<p>You should supply script as needed to do any preparatory setup on the
+control (or other) nodes - ansible installation itself - copying ssh
+keys - WinRM setup</p>
+<h2 id="demonstration-instruction-file-10">Demonstration instruction
+file (10%)</h2>
+<p>Provide a set of human-readable instructions for someone at the skill
+level as you to run the supplied system from scratch.</p>
+<p>Specify VMs if needed.</p>
+<p>Should be in a file <code>instructions.txt</code>.</p>
+<h2 id="evidence-10">Evidence (10%)</h2>
+<p>Provide screenshots / text dumps of a selection of command output to
+show that your system performs as required.</p>
+<h1 id="submission">Submission</h1>
+<p>Required files are to be placed in the <code>ca2</code> folder of
+your labs git repository.</p>
+<p>Files should be submitted and pushed to GitLab in advance of the
+submission deadline to be taken as submitted.</p>
+<h1 id="feedback">Feedback</h1>
+<p>Summary feedback will be provided on Moodle and/or GitLab. Verbal
+feedback available on request.</p>
+<h1 id="generative-ai">Generative AI</h1>
+<p>It is not permitted to use Generative AI in this assignment.</p>
+</body>
+</html>
