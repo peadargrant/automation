@@ -1,0 +1,19 @@
+- name: purge student user accounts
+  hosts: local
+  become: yes
+  tasks:
+         
+  - name: load user list from CSV file
+    read_csv:
+      path: user_list.csv
+    register: user_list
+    delegate_to: localhost
+
+  - name: student user account deletion
+    user:
+      name: "{{ item.username }}"
+      state: absent
+      remove: true
+    loop: "{{ user_list.list }}"
+
+      

@@ -1,0 +1,62 @@
+- name: db lab playbook
+  hosts: local
+  become: yes
+  tasks:
+
+  - name: set hostname
+    hostname:
+      name: datalab
+    
+  - name: system update
+    apt:
+      upgrade: yes
+      update_cache: yes
+      
+  - name: package installation
+    apt:
+      name:
+      - emacs-nox
+      - elpa-graphviz-dot-mode
+      - elpa-markdown-mode
+      - elpa-yaml-mode
+      - tmux
+      - pandoc
+      - fail2ban
+      - postgresql
+      - python3-psycopg2
+      - graphviz
+      - tmux
+      - smartmontools
+      - dos2unix
+      - unzip
+      - ngircd
+      - irssi
+      - default-jre
+      - entr
+      - whiptail
+      state: present
+      
+  - name: package removal
+    apt:
+      name:
+      - incus # due to subuid / subgid issues
+      state: absent
+      
+  - name: autoremove and purge packages
+    apt:
+      autoremove: yes
+      purge: yes
+      
+  - name: student group creation
+    group:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - student
+      
+  - name: warning notice copy
+    copy:
+      src: notice.txt
+      dest: /etc/notice.txt
+      
+

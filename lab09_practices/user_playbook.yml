@@ -1,0 +1,32 @@
+- name: student user account creation
+  hosts: local
+  become: yes
+  tasks:
+    
+  - name: student group creation
+    group:
+      name: "{{ item.group_name }}"
+      state: present
+    loop:
+      - group_name: student
+      - group_name: analytics
+      
+  - name: load user list from CSV file
+    read_csv:
+      path: user_list.csv
+    register: user_list
+    delegate_to: localhost
+
+  - name: student user account creation
+    user:
+      name: "{{ item.username }}"
+      comment: "Student {{ item.username }}"
+      state: present
+      group: student
+      groups: analytics
+      skeleton: /etc/skel
+      shell: /bin/bash
+      password: "{{ '1Password' | password_hash('sha512') }}"
+      update_password: 'on_create'
+    loop: "{{ user_list.list }}"
+      
