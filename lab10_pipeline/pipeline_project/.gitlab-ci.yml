@@ -1,0 +1,9 @@
+build-job:
+  stage: build
+  script:
+    - echo "starting GitLab job"
+    - pandoc -o lab_report.docx lab_report.md
+    - echo "GitLab job finished"
+  artifacts:
+    paths:
+      - lab_report.docx
