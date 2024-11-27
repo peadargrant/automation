@@ -1,12 +1,12 @@
 % Automation CA2 specification
 
-**Deadline:** to be confirmed
+**Deadline:** 20/12/2024 09:00
 
 
 # Requirements
 
 You are to construct an automation of your choice for either system setup, administration or deployment purposes.
-You can use CA1 as a basis for starting this CA but you must discuss this with me first.
+You can use CA1 (if you wish, not required!) as a basis for starting this CA but you must discuss this with me first.
 
 ## Problem description. (10%)
 
