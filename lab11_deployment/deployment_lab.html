@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Deployment lab</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../lab.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Deployment lab</h1>
+</header>
+<h1 id="task-0-vm-setup">Task 0: VM setup</h1>
+<p>We will need the following VM: Ubuntu Linux Quick Instance.</p>
+<p>Use SFTP to copy the following files to your control VM:</p>
+<pre><code>control_playbook.yml
+inventory.yml</code></pre>
+<p>Then via SSH execute the command</p>
+<pre><code>sudo apt -y install ansible &amp;&amp; ansible-playbook -i inventory.ini control_playbook.yml --ask-become-pass</code></pre>
+<p>You can go ahead and do the next few tasks while this long operation
+is completing. Do check back and re-run the playbook when the VM
+reboots. When it does, you can just run:</p>
+<pre><code>ansible-playbook -i inventory.ini control_playbook.yml</code></pre>
+<p>It should run to completion this time.</p>
+<h1 id="task-1-open-project">Task 1: Open project</h1>
+<p>There is a simple application called <code>reporter</code>, in the
+form of a Maven project. Open it with your preferred IDE. I have tested
+it with NetBeans only.</p>
+<h1 id="task-2-run-the-project-in-your-ide">Task 2: Run the project in
+your IDE</h1>
+<p><strong>Run</strong> the project within your IDE. It should print out
+a message to the terminal.</p>
+<h1 id="task-3-build-the-project-in-your-ide">Task 3: Build the project
+in your IDE</h1>
+<p><strong>Build</strong> the project using the Build or Clean and Build
+button.</p>
+<p>The Maven Assembly plugin will create a second JAR file named
+<code>reporter-full.jar</code> that:</p>
+<ol type="1">
+<li>Has the Main class set</li>
+<li>Has any required non-standard dependencies bundled in (there aren’t
+any here)</li>
+</ol>
+<h1 id="task-3-run-the-jar-directly-in-windows-linux">Task 3: Run the
+JAR directly in Windows / Linux</h1>
+<p>Open your Windows Terminal / XTerm / Terminal.app and navigate to the
+<code>target</code> folder.</p>
+<p>Using <code>ls</code> should show something like:</p>
+<pre><code>Directory: C:\Users\grantp\automation\lab11_deployment\reporter\target
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        27/11/2024     09:38                archive-tmp
+d-----        27/11/2024     09:38                classes
+d-----        27/11/2024     09:38                generated-sources
+d-----        27/11/2024     09:38                maven-archiver
+d-----        27/11/2024     09:38                maven-status
+-a----        27/11/2024     09:38           2197 reporter-1.0.jar
+-a----        27/11/2024     09:38           2219 reporter-full.jar</code></pre>
+<p>Run the <code>reporter-full.jar</code> as follows:</p>
+<pre><code>java -jar reporter-full.jar</code></pre>
+<h1 id="task-4-create-gitlab-project">Task 4: Create GitLab project</h1>
+<p>In <a href="https://gitlab.comp.dkit.ie/">GitLab</a> setup a new
+project named exactly <code>deployment_project</code>. Set it up as an
+empty repository (no README). Make sure that <em>Initialize repository
+with a README</em> is turned OFF.</p>
+<h1 id="task-5-create-the-deployment-project-repo">Task 5: Create the
+deployment project repo</h1>
+<p>Then in this folder run the script (replacing <code>grantp</code>
+with your GitLab username):</p>
+<pre><code>./setup_deployment_project.ps1 -GitLabUserName grantp</code></pre>
+<h1 id="task-6-checkout-the-project-on-your-control-node">Task 6:
+Checkout the project on your control node</h1>
+<p>Check out the Git repo from GitLab on the control node (replacing
+<code>grantp</code> with your username):</p>
+<pre><code>git clone https://gitlab.comp.dkit.ie/grantp/deployment_project.git</code></pre>
+<h1 id="task-7-check-that-the-project-runs-on-your-control-node">Task 7:
+Check that the project runs on your control node</h1>
+<pre><code>./build.sh</code></pre>
+<h1 id="task-8-setup-runner-for-project">Task 8: Setup runner for
+project</h1>
+<ol type="1">
+<li>On GitLab go to your fork of the <code>deployment_project</code>
+project.</li>
+<li>Click <em>Settings</em> and then <em>CI/CD</em>.</li>
+<li>Find <em>Runners</em> on the screen and click <em>Expand</em>.</li>
+<li>Click <em>New project runner</em>.</li>
+<li><strong>Important!</strong> Make sure to turn on <em>Run untagged
+jobs</em>.</li>
+<li>Click <em>Create runner</em>.</li>
+<li>Choose <em>Linux</em> on the next screen.</li>
+<li>Under Step 1 on the next screen, copy the command onto your XOA
+machine with <code>sudo</code> infront of it. You may need to enter your
+machine password here.
+<ul>
+<li>If you get a yellow WARNING type Ctrl-C to exit.</li>
+<li>Re-run the command with <code>sudo</code> in front of it as
+instructed.</li>
+</ul></li>
+<li>Press enter to accept the default GitLab URL.</li>
+<li>Press enter to accept the default runner name.</li>
+<li>When it asks <code>Enter an executor</code> type <code>shell</code>
+and press enter.
+<ul>
+<li>You DON’T need to run the <code>gitlab-runner run</code> command as
+its handled by systemd.</li>
+</ul></li>
+<li>Finally click <em>View runners</em>.</li>
+<li>You should see a green dot under <em>Assigned project
+runners</em>.</li>
+</ol>
+<h1 id="task-9-manually-running-the-pipeline">Task 9: Manually running
+the pipeline</h1>
+<p>We will now manually run the pipeline to confirm all works (it
+probably won’t):</p>
+<ol type="1">
+<li>In your <code>deployment_project</code> project on GitLab go to
+<em>Build/Pipelines</em>.</li>
+<li>Click <em>Run pipeline</em>.</li>
+<li>Click <em>Run pipeline</em> on the next screen also.</li>
+<li>If it fails, look at the reason. Usually it’s a missing
+command.</li>
+<li>On your XOA machine install the missing command(s) and re-try step 4
+until it works.</li>
+</ol>
+<p>By default a failing pipeline will e-mail you from GitLab. It will
+also mail you the first time that a pipeline that previously failed runs
+successfully.</p>
+</body>
+</html>

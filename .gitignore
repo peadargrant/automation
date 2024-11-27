@@ -15,4 +15,4 @@
 *.fdb_latexmk
 _minted-*
 __pycache__
-/lab11_deployment/reporter/target/
+
