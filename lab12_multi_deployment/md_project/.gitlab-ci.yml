@@ -1,0 +1,10 @@
+build-job:
+  stage: build
+  script:
+    - chmod +x ./build.sh
+    - ./build.sh
+    - chmod +x ./deploy.sh
+    - ./deploy.sh
+  artifacts:
+    paths:
+      - reporter/target/reporter-full.jar

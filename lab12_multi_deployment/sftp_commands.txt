@@ -1,0 +1,4 @@
+put control_inventory.ini
+put control_playbook.yml
+put linux_target_playbook.yml
+put windows_target_playbook.yml

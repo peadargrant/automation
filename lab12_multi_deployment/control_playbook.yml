@@ -1,0 +1,71 @@
+- name: control host setup playbook
+  hosts: local
+  become: yes
+  tasks:
+  
+  - name: allow sudo with no password
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      insertafter: '^%sudo'
+      line: 'administrator ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
+  - name: set control node hostname
+    ansible.builtin.hostname:
+      name: control
+  
+  - name: system update
+    apt:
+      upgrade: yes
+      update_cache: yes
+      
+  - name: check if a reboot is required after update
+    ansible.builtin.stat:
+      path: /var/run/reboot-required
+      get_checksum: no
+    register: reboot_required_file
+    
+  - name: reboot the server (if required, re-run playbook to finish)
+    shell: "sleep 5 && reboot"
+    when: reboot_required_file.stat.exists == true
+
+  - name: Download GitLab runner setup script
+    ansible.builtin.get_url:
+      url: https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh
+      dest: /home/administrator/script.deb.sh
+      owner: administrator
+      group: administrator
+      mode: '770'
+
+  - name: check if gitlab runner source already installed
+    stat:
+      path: /etc/apt/sources.list.d/runner_gitlab-runner.list
+      get_checksum: no
+    register: gitlab_runner_present
+
+  - name: gitlab runner repo setup script
+    debug:
+      msg: gitlab runner repo setup script not installed - install it here!
+    when: not gitlab_runner_present.stat.exists
+
+  - name: gitlab runner repo setup script warning
+    shell:
+      cmd: /home/administrator/script.deb.sh
+    when: not gitlab_runner_present.stat.exists
+    
+  - name: package installation
+    apt:
+      name:
+      - emacs-nox
+      - elpa-yaml-mode
+      - tmux
+      - gitlab-runner
+      - maven
+      - openjdk-21-jre
+      state: present
+      
+  - name: Remove dependencies that are no longer required and purge their configuration files
+    apt:
+      autoremove: yes
+      purge: true

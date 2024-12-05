@@ -1,0 +1,35 @@
+- name: download JDK for windows
+  hosts: local
+  tasks:
+  
+  - name: download JDK for windows
+    get_url:
+      url: "https://aka.ms/download-jdk/microsoft-jdk-21.0.5-windows-x64.msi"
+      dest: "/home/administrator/windows-jdk.msi"
+      mode: 0600
+
+
+- name: target windows host setup
+  hosts: windows
+  tasks:
+  
+  - name: Change the hostname 
+    ansible.windows.win_hostname:
+      name: windows-target
+    register: hostname_result
+
+  - name: Reboot
+    ansible.windows.win_reboot:
+    when: hostname_result.reboot_required
+    
+  - name: Create temp directory structure
+    ansible.windows.win_file:
+      path: C:\Temp
+      state: directory
+    
+  - name: Copy Java MSI file
+    ansible.windows.win_copy:
+      src: /home/administrator/windows-jdk.msi
+      dest: C:\Temp\windows-jdk.msi
+  
+  
