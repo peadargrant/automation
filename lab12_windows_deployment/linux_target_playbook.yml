@@ -1,0 +1,59 @@
+# Target setup playbook
+- name: target linux host
+  hosts: linux
+  become: yes
+  tasks:
+  
+  - name: allow sudo with no password
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      insertafter: '^%sudo'
+      line: 'administrator ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
+  - name: set target node hostname
+    ansible.builtin.hostname:
+      name: linux-target
+  
+  - name: system update
+    apt:
+      upgrade: yes
+      update_cache: yes
+      
+  - name: check if a reboot is required after update
+    ansible.builtin.stat:
+      path: /var/run/reboot-required
+      get_checksum: no
+    register: reboot_required_file
+    
+  - name: reboot the server (if required, re-run playbook to finish)
+    shell: "sleep 5 && reboot"
+    when: reboot_required_file.stat.exists == true
+    
+  - name: package installation
+    apt:
+      name:
+      - openjdk-21-jre
+      state: present
+      
+  - name: Remove dependencies that are no longer required and purge their configuration files
+    apt:
+      autoremove: yes
+      purge: true
+
+
+- name: target windows host
+  hosts: windows
+  tasks:
+  
+  - name: Change the hostname 
+    ansible.windows.win_hostname:
+      name: windows-target
+    register: hostname_result
+
+  - name: Reboot
+    ansible.windows.win_reboot:
+    when: hostname_result.reboot_required
+    
+    

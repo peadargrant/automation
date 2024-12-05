@@ -1,0 +1,3 @@
+put control_inventory.ini
+put control_playbook.yml
+put target_playbook.yml
