@@ -1,0 +1,27 @@
+% Ideas for 2025/26
+
+Removals:
+0. Remove the MS office bit - straight into remoting.
+
+New sequence:
+1. Intro 1 hr on automation w/ examples from me and others.
+2. Remoting over SSH to Linux and Windows.
+3. Remoting over WinRM to Windows from Windows and Linux.
+4. Configuration management tools - what they do - Ansible.
+5. Ansible automating Linux (w/ scenario).
+6. Ansible automating Windows (w/ scenario).
+7. Pipeline automation w/ GitLab; Makefiles; Artefacts.
+8. Java pipeline automation; deployment.
+9. -
+10. -
+11. -
+12. -
+
+
+Things to check out:
+0. What VM and/or containerisation options are there?
+1. Can we have an API to XOA?
+2. Local PCs vs Own PCs?
+
+
+
