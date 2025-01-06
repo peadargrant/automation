@@ -16,3 +16,4 @@
 _minted-*
 __pycache__
 
+.DS_Store
